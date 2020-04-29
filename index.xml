@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>B.log</title><link>https://haneunbi.github.io/</link><description>B.log</description><generator>Hugo -- gohugo.io</generator><language>ko-KR</language><atom:link href="https://haneunbi.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>기술 블로그 시작하기</title><link>https://haneunbi.github.io/2020/04/29/start-blog/</link><pubDate>Wed, 29 Apr 2020 15:05:58 +0900</pubDate><guid>https://haneunbi.github.io/2020/04/29/start-blog/</guid><description>&lt;p>기술 블로그를 만들어야지 싶어 몇년 전부터 *&lt;em>.github.io&lt;/em> 블로그를 만들었다 지웠다를 반복했다.&lt;/p>
+&lt;p>기존 플랫폼은 이용하고 싶지 않아 깃허브(GitHub)를 이용한 정적 페이지를 만들기로는 정했는데 어떠한 블로그 프레임워크로 할 것인지는 정하지 못했다. 처음에는(2017년) 깃허브 블로그하면 가장 유명한 지킬(Jekyll)을 사용해서 만들어만 두었다. 그리고 잊고 있다가 다시금 생각나 알아보니 당시엔(2018년) 지킬보단 헥소(Hexo)가 뜨고있다하여(?) 바꿨다. 물론 이때도 만들어만 두고 사용은 안했다..😅&lt;/p>
+&lt;p>그러다가 최근에(2020년) 다시 보니 휴고(Hugo)가 새롭게 등장해 있길래 혼자서 온갖 시행착오를 겪어가며 나름의 커스터마이징도 끝내놓고 보니 뷰프레스(VuePress)가 있다는 걸 알게 됐다. 안그래도 Vue를 공부해야지 하는 찰나에 쓰면 좋겠다 싶어서 또 다시 바꿔봤는데 이게 Hugo보다 속도가 느려서 당장 테스트 서버를 돌리는데도 답답하더라. 아무튼 다시 Hugo로 돌아왔고 이제부턴 방치하지 않고 시작해볼까 한다.&lt;/p>
+&lt;h2 id="회고">회고&lt;/h2>
+&lt;p>내가 아는 건 자바스크립트 정도에 CLI도 어색하고 각각의 베이스 언어들도 접해보지 않은 상태라 솔직히 하나하나 만들 때마다 헤맸다.
+결과적으로 Go나 Vue의 컴포넌트 개념을 살짝 훑어봤고, 빠른 배포나 글쓰기를 위한 초간단 쉘 스크립트도 작성해보는 기회가 되었다.&lt;/p>
+&lt;h2 id="참조">참조&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://jekyllrb.com/" target="_blank" >Jekyll (Ruby)&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://hexo.io/ko/index.html" target="_blank" >Hexo (Node.js)&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://gohugo.io/" target="_blank" >Hugo (Go)&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://vuepress.vuejs.org/" target="_blank" >VuePress (Vue.js)&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://git-scm.com/" target="_blank" >Git&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/" target="_blank" >GitHub&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>About</title><link>https://haneunbi.github.io/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://haneunbi.github.io/about/</guid><description>&lt;p>준비 중&lt;/p></description></item></channel></rss>
