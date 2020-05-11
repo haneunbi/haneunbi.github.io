@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vue on B.log</title>
+    <link>https://haneunbi.github.io/tags/vue/</link>
+    <description>B.log (vue)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Fri, 08 May 2020 00:00:00 +0000</lastBuildDate>
+    
+    <atom:link href="https://haneunbi.github.io/tags/vue/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Vue.js] Todo List 만들기</title>
+      <link>https://haneunbi.github.io/2020/05/08/vue-todolist/</link>
+      <pubDate>Fri, 08 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://haneunbi.github.io/2020/05/08/vue-todolist/</guid>
+      <description>&lt;p&gt;Vue.js를 이용하여 Todo List를 만들었다.&lt;br&gt;
+Vue나 React 배우기를 더 이상 미뤄서는 안될 것 같고 일단 html 템플릿을 그대로 활용하는 Vue가 익숙할 것 같아 Vue를 선택했다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vue로 만든 Todo&lt;/strong&gt;&lt;br&gt;
+&lt;a href=&#34;https://github.com/haneunbi/vue-todolist&#34;  target=&#34;_blank&#34; &gt;GitHub Repo&lt;/a&gt; / &lt;a href=&#34;https://haneunbi.github.io/vue-todolist&#34;  target=&#34;_blank&#34; &gt;GitHub Page&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;jQuery로 만든 Todo (이 형태를 기본으로 Vue로 변환)&lt;br&gt;
+&lt;a href=&#34;https://github.com/haneunbi/todolist&#34;  target=&#34;_blank&#34; &gt;GitHub Repo&lt;/a&gt; / &lt;a href=&#34;https://haneunbi.github.io/todolist&#34;  target=&#34;_blank&#34; &gt;GitHub Page&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;작업 내내 jQuery 타성에 젖어버린 나의 머릿속은 대체 왜 Vue를 써야 하는 건지 물음표 투성이었다.&lt;br&gt;
+컴포넌트(Component)의 장점도 알겠고 별도 js 파일에서 분리 조작이 아닌 html 태그 내에서의 DOM 조작과 데이터 바인딩이 분명 흥미롭긴 한데 정말 효과적인지는 의문이다.&lt;br&gt;
+컴포넌트 간 데이터 전달도 번거롭고 빌드도 해야하고.. 다 익숙하지 않은 탓이겠지.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;하위 컴포넌트 → &lt;strong&gt;event&lt;/strong&gt; → 상위 컴포넌트&lt;br&gt;
+상위 컴포넌트 → &lt;strong&gt;props&lt;/strong&gt; → 하위 컴포넌트&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;그래도 오랜만에 새로움이 작동되는 희열을 느꼈다.&lt;br&gt;
+(나도 코드 삽입해서 설명하고 싶은데 아직 스스로도 정리가 덜 돼서 회고에 가까운 기록으로 대체)&lt;/p&gt;
+&lt;h2 id=&#34;참고&#34;&gt;참고&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://kr.vuejs.org/v2/guide/index.html&#34;  target=&#34;_blank&#34; &gt;Vue.js 공식 문서&lt;/a&gt; (I ❤ 한글)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://kr.vuejs.org/v2/examples/todomvc.html&#34;  target=&#34;_blank&#34; &gt;Vue.js 공식 문서 - Todo 예시&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
