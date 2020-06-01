@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    
+    
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>[CSS] IR(Image Replacement) 기법 - B.log</title>
+<meta name="description" content="Today I Learned">
+
+<link rel="canonical" href="https://haneunbi.github.io/">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://haneunbi.github.io/rss/">
+
+<link rel="icon" type="image/x-icon" href="https://haneunbi.github.io/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="https://haneunbi.github.io/favicon.png">
+
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+<script src="https://haneunbi.github.io/js/custom.js?rnd=1591013184"></script>
+
+<link rel="stylesheet" href="https://haneunbi.github.io/css/style.css?rnd=1591013184">
+<link rel="stylesheet" href="https://haneunbi.github.io/css/custom.css?rnd=1591013184">
+
+<meta property="og:title" content="[CSS] IR(Image Replacement) 기법" />
+<meta property="og:description" content="스크린 리더 사용자를 위한 대체 텍스트 제공하기" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://haneunbi.github.io/2020/06/01/css-ir/" />
+<meta property="article:published_time" content="2020-06-01T20:53:15+09:00" />
+<meta property="article:modified_time" content="2020-06-01T20:53:15+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[CSS] IR(Image Replacement) 기법"/>
+<meta name="twitter:description" content="스크린 리더 사용자를 위한 대체 텍스트 제공하기"/>
+
+
+
+    
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            
+            <h1 class="site-header">
+    <a href="https://haneunbi.github.io/">B.log</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/about/" title="">About</a>
+    
+    <a class="" href="/posts/" title="">Posts</a>
+    
+    <a class="" href="/tags/" title="">Tags</a>
+    
+</nav>
+
+            
+        </header>
+        <main>
+            
+
+<article class="post">
+    <header>
+        <h1>[CSS] IR(Image Replacement) 기법</h1>
+    </header>
+    <div class="content">
+        <p>웹 접근성 준수를 위해 이미지 사용 시 대체 텍스트를 제공해야 한다.<br>
+단순히 <a href="https://ko.wikipedia.org/wiki/%EC%8A%A4%ED%81%AC%EB%A6%B0_%EB%A6%AC%EB%8D%94"  title="위키백과"  target="_blank" >스크린 리더</a> 사용자뿐 아니라 <a href="https://support.google.com/webmasters/answer/7451184?hl=ko#images"  title="검색엔진 최적화(SEO) 초보자 가이드 | Google"  target="_blank" >검색 엔진의 효과적인 내용 수집</a>을 위해서도 필수적이다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/img/button.jpg&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;대체 텍스트&#34;</span>&gt;
+</code></pre></div><p>가장 간단하게는 위와 같이 img 태그 내 <strong>alt 속성</strong>을 주는 것이겠지만
+CSS background-image 속성을 사용하여 이미지를 넣는 경우도 상당수 차지하기 때문에 IR 기법에 대해 알아보자.
+<em>(사실 그동안 어느정도 안다고 생각하며 깊게 고민하지 않고 사용했다..)</em></p>
+<h2 id="-bad---스크린-리더가-읽을-수-없는-방법">👎 BAD - 스크린 리더가 읽을 수 없는 방법</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">hidden</span> {
+    <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">none</span>;
+}
+</code></pre></div><p>화면에 표시되지 않고 스크린 리더가 읽을 수 없다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">hidden</span> {
+    <span style="color:#66d9ef">visibility</span>: <span style="color:#66d9ef">hidden</span>;
+}
+</code></pre></div><p>화면에 표시되지 않으나 영역(width, height 등)은 차지한다. 스크린 리더가 읽을 수 없다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">hidden</span> {
+   <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">0</span>;
+   <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">0</span>;
+   <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">0</span>;
+   <span style="color:#66d9ef">line-height</span>: <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>위와 같이 사이즈를 0으로 지정하는 방법 역시 스크린 리더가 읽을 수 없다.
+<br><br>
+우리의 목표는 <strong>시각적으로 숨기지만 스크린 리더는 읽을 수 있어야</strong> 하기 때문에 아래 방법으로 사용하자!</p>
+<h1 id="-so-so">👌 SO-SO</h1>
+<h3 id="phark-method-기법">Phark Method 기법</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">button</span>&gt;검색&lt;/<span style="color:#f92672">button</span>&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">button</span> {
+    <span style="color:#66d9ef">text-indent</span>: <span style="color:#ae81ff">-9999</span><span style="color:#66d9ef">px</span>;
+}
+</code></pre></div><p>추가 태그도 필요없고 해상도의 범위(화면) 밖으로 텍스트만 날려버리는 가장 간단한 고전(?) 방법이다.
+하지만 정상적으로 이미지가 로드되지 않은 상황에서 일반 사용자도 대체 텍스트를 확인할 수 없으며,
+(요즘 디바이스 사양에서는 미미하겠지만) text-indent 속성이 적용된 요소가 많을 때 웹페이지 로드 시 위치값을 그만큼 많이 계산해야 하므로 성능 저하를 불러올 수 있는 단점이 있다.</p>
+<h3 id="wa-ir-기법">WA IR 기법</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">button</span>&gt;
+    &lt;<span style="color:#f92672">span</span>&gt;검색&lt;/<span style="color:#f92672">span</span>&gt;
+&lt;/<span style="color:#f92672">button</span>&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">button</span> {
+    <span style="color:#75715e">/* 이미지 버튼 속성 정의 */</span>
+}
+
+<span style="color:#f92672">button</span> <span style="color:#f92672">span</span> {
+    <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">relative</span>;
+    <span style="color:#66d9ef">z-index</span>: <span style="color:#ae81ff">-1</span>;
+}
+</code></pre></div><p>추가 태그(span)를 사용하여 이미지 아래로 텍스트를 숨기는 기법이다.
+이 방법 역시 적용된 요소가 많을수록 position 속성에 따른 성능 저하 이슈가 있다.</p>
+<h1 id="-best">👍 BEST</h1>
+<p>마지막으로 <a href="https://html5boilerplate.com/"  target="_blank" >H5BP(HTML5 Boilerplate)</a>나 <a href="https://getbootstrap.com/docs/4.0/utilities/screenreaders/"  target="_blank" >부트스트랩</a>에서 사용중인 최신 방법이다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">sr-only</span> {
+    <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">absolute</span>; <span style="color:#75715e">/* position: absolute/fixed 에서만 clip 속성 작동 */</span>
+    <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">-1</span><span style="color:#66d9ef">px</span>; <span style="color:#75715e">/* 부트스트랩에선 안씀 */</span>
+    <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">px</span>;
+    <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">px</span>;
+    <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">border</span>: <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">white-space</span>: <span style="color:#66d9ef">nowrap</span>;
+    <span style="color:#66d9ef">overflow</span>: <span style="color:#66d9ef">hidden</span>; <span style="color:#75715e">/* overflow: visible 이면 clip 속성 작동 안됨 */</span>
+    <span style="color:#66d9ef">clip</span>: rect(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">clip-path</span>: inset(<span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>); <span style="color:#75715e">/* H5BP에선 안씀 */</span>
+}
+</code></pre></div><p>margin과 clip-path 속성을 제외하고 H5BP나 부트스트랩이나 나머지는 동일하다.</p>
+<p>0 사이즈를 피하고자 width와 height를 1px을 준다.
+하지만 1px의 공간으로는 텍스트의 공백과 줄바꿈의 계산되지 않기 때문에 (공백은 1개만 표시하고 줄바꿈은 되지 않는) white-space: nowrap으로 정의한다.
+<em>(스크린 리더가 줄바꿈은 공백으로 해석하지 않아 띄어쓰기가 되지 않은 하나의 긴 단어처럼 읽어준다고 한다. <a href="https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe"  target="_blank" >관련 링크</a>)</em></p>
+<h2 id="참고">참고</h2>
+<ul>
+<li><a href="https://css-tricks.com/the-image-replacement-museum/"  target="_blank" >The Image Replacement Museum | CSS-Tricks</a></li>
+<li><a href="https://nuli.navercorp.com/community/article/1132804?email=true"  target="_blank" >스크린리더 사용자를 위한 IR(Image Replacement)기법과 추가 설명 제공하기 | 널리</a></li>
+<li><a href="http://ui.daum.net/convention/css/css_ir"  target="_blank" >IR 기법 | 다룸</a></li>
+</ul>
+
+    </div>
+    <div class="article-info">
+    
+    <div class="article-date">2020.06.01</div>
+    
+    <div class="article-taxonomies">
+        
+        
+        <ul class="article-tags">
+            
+            <li><a href="https://haneunbi.github.io/tags/css">#css</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/ir%EA%B8%B0%EB%B2%95">#IR기법</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/%EC%9B%B9%EC%A0%91%EA%B7%BC%EC%84%B1">#웹접근성</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/til">#TIL</a></li>
+            
+        </ul>
+        
+    </div>
+</div>
+    
+<footer>
+    <script src="https://utteranc.es/client.js"
+        repo="haneunbi/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script>
+</footer>
+
+</article>
+
+
+        </main>
+        <footer>
+            
+            <p>© B, 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -2,10 +2,13 @@
 body{font-size:16px;line-height:1.6;overflow-y:scroll} /* line-height:1.5;letter-spacing:1.8px */
 h1,h2,h3,h4,h5,h6{margin-top:2.4rem}
 hr{margin:3.6rem 0}
-p{margin:1em 0}
-pre{overflow:hidden;overflow-x:auto;line-height:1.5}
+p{margin:1rem 0}
+pre{margin:1rem 0 0.6rem;overflow:hidden;overflow-x:auto;line-height:1.5}
+.highlight+p{margin-top:0.6rem}
+p+.highlight pre, p+pre{margin-top:2rem}
+a{color:#42b983;transition:color 0.3s}
 a:hover, a:focus, .article-info a:hover{color:#fcbc0e;border-bottom:1px solid}
-.container{width:90%;max-width:720px}
+.container{width:90%;max-width:740px}
 header h1{font-size:18px}
 main h1{margin-top:1.4em;margin-bottom:1.2em}
 footer{font-size:13px;text-align:right}
