@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    
+    
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>[CSS] 박스 모델(Box-model) - B.log</title>
+<meta name="description" content="Today I Learned">
+
+<link rel="canonical" href="https://haneunbi.github.io/">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://haneunbi.github.io/rss/">
+
+<link rel="icon" type="image/x-icon" href="https://haneunbi.github.io/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="https://haneunbi.github.io/favicon.png">
+
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+<script src="https://haneunbi.github.io/js/custom.js?rnd=1591354000"></script>
+
+<link rel="stylesheet" href="https://haneunbi.github.io/css/style.css?rnd=1591354000">
+<link rel="stylesheet" href="https://haneunbi.github.io/css/custom.css?rnd=1591354000">
+
+<meta property="og:title" content="[CSS] 박스 모델(Box-model)" />
+<meta property="og:description" content="CSS 레이아웃의 기본인 박스 모델 정리하기" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://haneunbi.github.io/2020/06/05/css-box-model/" />
+<meta property="article:published_time" content="2020-06-05T19:27:13+09:00" />
+<meta property="article:modified_time" content="2020-06-05T19:27:13+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[CSS] 박스 모델(Box-model)"/>
+<meta name="twitter:description" content="CSS 레이아웃의 기본인 박스 모델 정리하기"/>
+
+
+
+    
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            
+            <h1 class="site-header">
+    <a href="https://haneunbi.github.io/">B.log</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/about/" title="">About</a>
+    
+    <a class="" href="/posts/" title="">Posts</a>
+    
+    <a class="" href="/tags/" title="">Tags</a>
+    
+</nav>
+
+            
+        </header>
+        <main>
+            
+
+<article class="post">
+    <header>
+        <h1>[CSS] 박스 모델(Box-model)</h1>
+    </header>
+    <div class="content">
+        <p>CSS의 레이아웃의 기본 중의 기본인 Box-model에 대해 다뤄보고자 한다.</p>
+<blockquote>
+<p>문서의 레이아웃을 계산할 때, 브라우저의 렌더링 엔진은 표준 <strong>CSS 기본 박스 모델</strong>에 따라 각각의 요소를 사각형 박스로 표현한다. CSS는 박스의 크기, 위치, 속성(색, 배경, 테두리 모양 등)을 결정한다. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+</blockquote>
+<p>정작 우리가 margin, border, padding, content가 무엇인 줄도 알고 실제로 잘 사용하고 있지만
+이러한 레이아웃 개념을 통틀어 <strong>박스 모델</strong>이라고 불리는 것을 모를 수(!)도 있다.
+(혹은 입문 시절에 배워서 명칭 자체를 잊었거나..)</p>
+<p><img src="/img/css-box_model.png" alt="The CSS box model">
+[그림 1] The CSS box model<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<p><strong>postion</strong> 속성 설정 후 top, left, rigith, bottom 좌표 지정을 시작으로(옵션),<br>
+<strong>margin</strong>(바깥 여백) &gt; <strong>border</strong>(테두리) &gt; <strong>padding</strong>(안쪽 여백) &gt; <strong>content</strong>(width, height) 가 존재한다.</p>
+<blockquote>
+<h4 id="position-속성">position 속성</h4>
+<ul>
+<li>static: (기본값) 다른 태그와의 관계에 의해 자동으로 배치되며 위치를 지정할 수 없음</li>
+<li><strong>relative</strong>: 기존 좌표를 기준으로 위치 지정</li>
+<li><strong>absolute</strong>: 절대 좌표(보통 부모 태그)를 기준으로 위치 지정</li>
+<li><strong>fixed</strong>: 스크롤과 관계없이 문서의 최 좌측상단을 기준으로 좌표 고정<br>
+*<em>position을 absolute/fixed로 설정 시 block 태그(width: 100%)의 특징이 사라짐</em></li>
+</ul>
+</blockquote>
+<div style="margin:10px auto;padding:10px;width:176px;background-color:#ddd;border:2px solid;text-align:center">200 X 100<br><small>Content box</small></div>
+▲ 마진과 패딩값이 각각 10px이고 테두리가 2px인, 총 너비 200px인 사각형을 그려보자.
+<p>마진값이야 사각형의 바깥 여백이기 때문에 무시하더라도
+우리가 사각형이라고 인지하는 부분은 <strong>테두리</strong>와 안쪽 여백인 <strong>패딩</strong>과 <strong>콘텐츠 너비</strong>의 합이다.
+때문에 200px이라는 너비를 얻으려면 테두리 두께와 안쪽 여백을 고려해서 아래과 같이 width값을 작성해야 한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">box</span> {
+    <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">10</span><span style="color:#66d9ef">px</span>;
+    <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">10</span><span style="color:#66d9ef">px</span>;
+    <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">176</span><span style="color:#66d9ef">px</span>; <span style="color:#75715e">/* padding 좌우 20px과 border 좌우 4px 빼기 */</span>
+    <span style="color:#66d9ef">border</span>: <span style="color:#ae81ff">2</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">solid</span>
+}
+</code></pre></div><p><img src="/img/css-box_model_sample.png" alt="개발자도구를 통해 확인해볼 수 있는 레이아웃">
+▲ 크롬 개발자도구 Computed(스타일 계산 결과) 탭에서 위와 같이 확인해볼 수 있다.</p>
+<p>하지만 이것도 <strong>box-sizing</strong> 속성을 지정하지 않거나 기본값인 <em>content-box</em>를 설정한 경우를 말하고
+별도로 <em>border-box</em>값을 사용한다면 굳이 border와 padding값을 뺀 값이 아닌 아래와 같이 200px 그대로 width값을 작성해도 된다.
+단, <a href="https://developer.mozilla.org/ko/docs/Web/CSS/box-sizing"  title="box-sizing - CSS: Cascading Style Sheets | MDN"  target="_blank" >box-sizing</a> 속성은 IE8 이상에서만 동작하니 주의하자!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">box</span> {
+    <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">10</span><span style="color:#66d9ef">px</span>;
+    <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">10</span><span style="color:#66d9ef">px</span>;
+    <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">200</span><span style="color:#66d9ef">px</span>; <span style="color:#75715e">/* padding과 border값을 뺄 필요 없음 */</span>
+    <span style="color:#66d9ef">border</span>: <span style="color:#ae81ff">2</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">solid</span>;
+    <span style="color:#66d9ef">box-sizing</span>: <span style="color:#66d9ef">border-box</span> <span style="color:#75715e">/* 추가 */</span>
+}
+</code></pre></div><div style="margin:10px auto;padding:10px;width:200px;background-color:#ddd;border:2px solid;text-align:center;box-sizing:border-box">200 X 100<br><small>Border box</small></div>
+▲ box-sizing 속성을 지정하지 않을 때와 똑같이 보여진다.
+<p><img src="/img/css-box_model_sample.png" alt="개발자도구를 통해 확인해볼 수 있는 레이아웃">
+▲ CSS에서 콘텐츠의 너비를 200px로 지정했지만 알아서 패딩과 보더값을 뺀 176px로 그려진다.</p>
+<blockquote>
+<h4 id="box-sizing-속성-ie8">box-sizing 속성 (IE8+)</h4>
+<ul>
+<li>content-box: (기본값) width와 height 속성이 content의 너비와 높이의 길이로 설정</li>
+<li><strong>border-box</strong>: width와 height 값이 padding, border, content를 합한 값으로 설정</li>
+</ul>
+</blockquote>
+<h2 id="번외-ie-박스-모델-버그">번외) IE 박스 모델 버그</h2>
+<p><img src="/img/css-box_model.svg" alt="W3C와 Internet Explorer 박스 모델 간의 너비 해석 방식의 차이점">
+[그림 2] W3C와 Internet Explorer 박스 모델 간의 너비 해석 방식의 차이점<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<p>Internet Explorer의 초기 버전(&lt;= IE6)은 <a href="https://ko.wikipedia.org/wiki/%EC%BF%BC%ED%81%AC_%EB%AA%A8%EB%93%9C"  title="위키 백과"  target="_blank" >관용(쿼크) 모드</a>일 때 박스 모델을 다르게 처리했다.
+(지금의 <em>box-sizing: border-box</em>로 지정한 것과 같이 width를 계산할 때 padding과 border를 포함한다.)<br>
+<em>IE 박스 모델 버그</em>인데, 웹표준이 중요한 현 시대에 DOCTYPE을 정의하지 않는 경우도 드물고 IE6는 2010년 3월 1일 장례식을 치뤘기에 CSS 핵이나 폴리필을 사용하면서까지 맞출 일은 드물테니 참고만 하자.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model"  target="_blank" >(인용 출처) CSS 기본 박스 모델 입문 - CSS: Cascading Style Sheets | MDN</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://en.wikipedia.org/wiki/CSS_box_model"  target="_blank" >(그림 출처) CSS box model | Wikipedia</a> <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+    <div class="article-info">
+    
+    <div class="article-date">2020.06.05</div>
+    
+    <div class="article-taxonomies">
+        
+        
+        <ul class="article-tags">
+            
+            <li><a href="https://haneunbi.github.io/tags/css">#css</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/til">#TIL</a></li>
+            
+        </ul>
+        
+    </div>
+</div>
+    
+<footer>
+    <script src="https://utteranc.es/client.js"
+        repo="haneunbi/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script>
+</footer>
+
+</article>
+
+
+        </main>
+        <footer>
+            
+            <p>© B, 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+
+</html>

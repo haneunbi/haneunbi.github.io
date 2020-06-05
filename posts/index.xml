@@ -6,10 +6,91 @@
     <description>B.log (Posts)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-KR</language>
-    <lastBuildDate>Mon, 01 Jun 2020 20:53:15 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jun 2020 19:27:13 +0900</lastBuildDate>
     
     <atom:link href="https://haneunbi.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[CSS] 박스 모델(Box-model)</title>
+      <link>https://haneunbi.github.io/2020/06/05/css-box-model/</link>
+      <pubDate>Fri, 05 Jun 2020 19:27:13 +0900</pubDate>
+      
+      <guid>https://haneunbi.github.io/2020/06/05/css-box-model/</guid>
+      <description>&lt;p&gt;CSS의 레이아웃의 기본 중의 기본인 Box-model에 대해 다뤄보고자 한다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;문서의 레이아웃을 계산할 때, 브라우저의 렌더링 엔진은 표준 &lt;strong&gt;CSS 기본 박스 모델&lt;/strong&gt;에 따라 각각의 요소를 사각형 박스로 표현한다. CSS는 박스의 크기, 위치, 속성(색, 배경, 테두리 모양 등)을 결정한다. &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;정작 우리가 margin, border, padding, content가 무엇인 줄도 알고 실제로 잘 사용하고 있지만
+이러한 레이아웃 개념을 통틀어 &lt;strong&gt;박스 모델&lt;/strong&gt;이라고 불리는 것을 모를 수(!)도 있다.
+(혹은 입문 시절에 배워서 명칭 자체를 잊었거나..)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://haneunbi.github.io/img/css-box_model.png&#34; alt=&#34;The CSS box model&#34;&gt;
+[그림 1] The CSS box model&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;postion&lt;/strong&gt; 속성 설정 후 top, left, rigith, bottom 좌표 지정을 시작으로(옵션),&lt;br&gt;
+&lt;strong&gt;margin&lt;/strong&gt;(바깥 여백) &amp;gt; &lt;strong&gt;border&lt;/strong&gt;(테두리) &amp;gt; &lt;strong&gt;padding&lt;/strong&gt;(안쪽 여백) &amp;gt; &lt;strong&gt;content&lt;/strong&gt;(width, height) 가 존재한다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h4 id=&#34;position-속성&#34;&gt;position 속성&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;static: (기본값) 다른 태그와의 관계에 의해 자동으로 배치되며 위치를 지정할 수 없음&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;relative&lt;/strong&gt;: 기존 좌표를 기준으로 위치 지정&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;absolute&lt;/strong&gt;: 절대 좌표(보통 부모 태그)를 기준으로 위치 지정&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fixed&lt;/strong&gt;: 스크롤과 관계없이 문서의 최 좌측상단을 기준으로 좌표 고정&lt;br&gt;
+*&lt;em&gt;position을 absolute/fixed로 설정 시 block 태그(width: 100%)의 특징이 사라짐&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;div style=&#34;margin:10px auto;padding:10px;width:176px;background-color:#ddd;border:2px solid;text-align:center&#34;&gt;200 X 100&lt;br&gt;&lt;small&gt;Content box&lt;/small&gt;&lt;/div&gt;
+▲ 마진과 패딩값이 각각 10px이고 테두리가 2px인, 총 너비 200px인 사각형을 그려보자.
+&lt;p&gt;마진값이야 사각형의 바깥 여백이기 때문에 무시하더라도
+우리가 사각형이라고 인지하는 부분은 &lt;strong&gt;테두리&lt;/strong&gt;와 안쪽 여백인 &lt;strong&gt;패딩&lt;/strong&gt;과 &lt;strong&gt;콘텐츠 너비&lt;/strong&gt;의 합이다.
+때문에 200px이라는 너비를 얻으려면 테두리 두께와 안쪽 여백을 고려해서 아래과 같이 width값을 작성해야 한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;box&lt;/span&gt; {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;margin&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt;;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;padding&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt;;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;width&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;176&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;/* padding 좌우 20px과 border 좌우 4px 빼기 */&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;border&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;solid&lt;/span&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://haneunbi.github.io/img/css-box_model_sample.png&#34; alt=&#34;개발자도구를 통해 확인해볼 수 있는 레이아웃&#34;&gt;
+▲ 크롬 개발자도구 Computed(스타일 계산 결과) 탭에서 위와 같이 확인해볼 수 있다.&lt;/p&gt;
+&lt;p&gt;하지만 이것도 &lt;strong&gt;box-sizing&lt;/strong&gt; 속성을 지정하지 않거나 기본값인 &lt;em&gt;content-box&lt;/em&gt;를 설정한 경우를 말하고
+별도로 &lt;em&gt;border-box&lt;/em&gt;값을 사용한다면 굳이 border와 padding값을 뺀 값이 아닌 아래와 같이 200px 그대로 width값을 작성해도 된다.
+단, &lt;a href=&#34;https://developer.mozilla.org/ko/docs/Web/CSS/box-sizing&#34;  title=&#34;box-sizing - CSS: Cascading Style Sheets | MDN&#34;  target=&#34;_blank&#34; &gt;box-sizing&lt;/a&gt; 속성은 IE8 이상에서만 동작하니 주의하자!&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;box&lt;/span&gt; {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;margin&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt;;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;padding&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt;;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;width&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;200&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;/* padding과 border값을 뺄 필요 없음 */&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;border&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;solid&lt;/span&gt;;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;box-sizing&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;border-box&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;/* 추가 */&lt;/span&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div style=&#34;margin:10px auto;padding:10px;width:200px;background-color:#ddd;border:2px solid;text-align:center;box-sizing:border-box&#34;&gt;200 X 100&lt;br&gt;&lt;small&gt;Border box&lt;/small&gt;&lt;/div&gt;
+▲ box-sizing 속성을 지정하지 않을 때와 똑같이 보여진다.
+&lt;p&gt;&lt;img src=&#34;https://haneunbi.github.io/img/css-box_model_sample.png&#34; alt=&#34;개발자도구를 통해 확인해볼 수 있는 레이아웃&#34;&gt;
+▲ CSS에서 콘텐츠의 너비를 200px로 지정했지만 알아서 패딩과 보더값을 뺀 176px로 그려진다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h4 id=&#34;box-sizing-속성-ie8&#34;&gt;box-sizing 속성 (IE8+)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;content-box: (기본값) width와 height 속성이 content의 너비와 높이의 길이로 설정&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;border-box&lt;/strong&gt;: width와 height 값이 padding, border, content를 합한 값으로 설정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;번외-ie-박스-모델-버그&#34;&gt;번외) IE 박스 모델 버그&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://haneunbi.github.io/img/css-box_model.svg&#34; alt=&#34;W3C와 Internet Explorer 박스 모델 간의 너비 해석 방식의 차이점&#34;&gt;
+[그림 2] W3C와 Internet Explorer 박스 모델 간의 너비 해석 방식의 차이점&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;Internet Explorer의 초기 버전(&amp;lt;= IE6)은 &lt;a href=&#34;https://ko.wikipedia.org/wiki/%EC%BF%BC%ED%81%AC_%EB%AA%A8%EB%93%9C&#34;  title=&#34;위키 백과&#34;  target=&#34;_blank&#34; &gt;관용(쿼크) 모드&lt;/a&gt;일 때 박스 모델을 다르게 처리했다.
+(지금의 &lt;em&gt;box-sizing: border-box&lt;/em&gt;로 지정한 것과 같이 width를 계산할 때 padding과 border를 포함한다.)&lt;br&gt;
+&lt;em&gt;IE 박스 모델 버그&lt;/em&gt;인데, 웹표준이 중요한 현 시대에 DOCTYPE을 정의하지 않는 경우도 드물고 IE6는 2010년 3월 1일 장례식을 치뤘기에 CSS 핵이나 폴리필을 사용하면서까지 맞출 일은 드물테니 참고만 하자.&lt;/p&gt;
+&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model&#34;  target=&#34;_blank&#34; &gt;(인용 출처) CSS 기본 박스 모델 입문 - CSS: Cascading Style Sheets | MDN&lt;/a&gt; &lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/CSS_box_model&#34;  target=&#34;_blank&#34; &gt;(그림 출처) CSS box model | Wikipedia&lt;/a&gt; &lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
+</description>
+    </item>
     
     <item>
       <title>[CSS] IR(Image Replacement) 기법</title>
