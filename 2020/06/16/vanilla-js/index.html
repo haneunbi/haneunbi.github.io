@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    
+    
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>[JavaScript] Vanilla JS - B.log</title>
+<meta name="description" content="Today I Learned">
+
+<link rel="canonical" href="https://haneunbi.github.io/">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://haneunbi.github.io/rss/">
+
+<link rel="icon" type="image/x-icon" href="https://haneunbi.github.io/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="https://haneunbi.github.io/favicon.png">
+
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+<script src="https://haneunbi.github.io/js/custom.js?rnd=1592307009"></script>
+
+<link rel="stylesheet" href="https://haneunbi.github.io/css/style.css?rnd=1592307009">
+<link rel="stylesheet" href="https://haneunbi.github.io/css/custom.css?rnd=1592307009">
+
+<meta property="og:title" content="[JavaScript] Vanilla JS" />
+<meta property="og:description" content="순수 자바스크립트(Pure JavaScript)로 jQuery 부수기! (feat. jQuery 못잃어)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://haneunbi.github.io/2020/06/16/vanilla-js/" />
+<meta property="article:published_time" content="2020-06-16T20:25:10+09:00" />
+<meta property="article:modified_time" content="2020-06-16T20:25:10+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[JavaScript] Vanilla JS"/>
+<meta name="twitter:description" content="순수 자바스크립트(Pure JavaScript)로 jQuery 부수기! (feat. jQuery 못잃어)"/>
+
+
+
+    
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            
+            <h1 class="site-header">
+    <a href="https://haneunbi.github.io/">B.log</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/about/" title="">About</a>
+    
+    <a class="" href="/posts/" title="">Posts</a>
+    
+    <a class="" href="/tags/" title="">Tags</a>
+    
+</nav>
+
+            
+        </header>
+        <main>
+            
+
+<article class="post">
+    <header>
+        <h1>[JavaScript] Vanilla JS</h1>
+    </header>
+    <div class="content">
+        <p><a href="http://vanilla-js.com/"  target="_blank" >Vanilla JS</a>는 별도 프레임워크나 라이브러리없이 순수 자바스크립트(0Byte)를 사용하는 것을 의미한다.<br>
+&lsquo;바닐라'라는 단어에는 &lsquo;평범한, 특별할 것 없는'이라는 뜻도 내포하고 있다.</p>
+<p>몇 년 새 <a href="https://ko.reactjs.org/"  title="2013년, Jordan Walke"  target="_blank" >React</a>와 <a href="https://kr.vuejs.org/"  title="2014년, Evan You"  target="_blank" >Vue.js</a>가 급부상하며 jQuery 의존도를 낮추는 추세고,
+<strong>.getElement(s)By어쩌고()</strong> 에서 <strong>.querySelector()</strong> 메소드가 나옴으로써 상대적으로 DOM 접근도 쉬워졌다.</p>
+<p>하지만 IE 사용률이 높은 국내 환경에서는 호환성을 위해서라도 jQuery는 아직도 활발히 이용되고 있고,
+공공기관이나 회사의 서비스가 2006년<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 이전에 런칭된 상태라면 (비효율적이지만) 가능한 IE7까지도 콘텐츠 이용에 무리가 없어야 한다.
+(라지만 현실적으론 최하 IE9가 맞다고 본다..)</p>
+<p>어쨌든 실제 나도 현업에선 IE7까지 맞춰야 하는 실정이지만
+단순히 DOM에 접근하기 쉽다는 이유만으로 jQuery를 고수하기에도 &lsquo;어쩔 수 없음을 가장한 회피'같아서
+당장 자주 쓰는 기본 메소드 위주로 정리하고자 한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;#test&#39;</span>); <span style="color:#75715e">// jQuery
+</span><span style="color:#75715e"></span>
+document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;test&#39;</span>); <span style="color:#75715e">// JavaScript
+</span></code></pre></div><p>내가 jQuery를 사용한 이유는 1차원적으로 선택자 때문이었다.
+id고 class고 tag name을 가리지 않는 만능 선택자 $()를 두고 길기만 한 document.getElementById를 쓰고 싶지 않았다.
+물론 $를 한번 호출할 때마다 성능 저하를 깨닫고부터는 아래와 같이 가능한 변수에 담아두고 쓰거나 최적의 선택자를 쓰도록 노력했다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">window.<span style="color:#a6e22e">jQuery</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">jQuery</span>;
+</code></pre></div><p>▲ jQuery에서 $란? jQuery 그 자체! jQuery() = $()</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$this</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">this</span>);
+
+<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">$this</span>.<span style="color:#a6e22e">hasClass</span>(<span style="color:#e6db74">&#39;open&#39;</span>)){
+    <span style="color:#a6e22e">$this</span>.<span style="color:#a6e22e">removeClass</span>(<span style="color:#e6db74">&#39;open&#39;</span>);
+}<span style="color:#66d9ef">else</span>{
+    <span style="color:#a6e22e">$this</span>.<span style="color:#a6e22e">addClass</span>(<span style="color:#e6db74">&#39;open&#39;</span>);
+}
+</code></pre></div><p>▲ 스코프 내에서 여러번 쓰일 경우 한번만 호출하여 변수에 담아 쓰자.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;.list li&#39;</span>); <span style="color:#75715e">// 후손 선택자
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;.list&#39;</span>).<span style="color:#a6e22e">find</span>(<span style="color:#e6db74">&#39;li&#39;</span>) <span style="color:#75715e">// Traversing
+</span></code></pre></div><p>▲ 후손 선택자보다 Traversing 방식이 빠르다.</p>
+<h1 id="이벤트dom-리소스-로드-관련">이벤트(DOM, 리소스 로드 관련)</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// jQuery
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(document).<span style="color:#a6e22e">ready</span>(<span style="color:#66d9ef">function</span>(){ <span style="color:#75715e">// = $(function(){
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 실행 코드
+</span><span style="color:#75715e"></span>});
+
+<span style="color:#75715e">// JavaScript
+</span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;DOMContentLoaded&#39;</span>, <span style="color:#66d9ef">function</span>(){ <span style="color:#75715e">// IE9+
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 실행 코드
+</span><span style="color:#75715e"></span>});
+</code></pre></div><p>▲ 외부 리소스(css, js, images, iframe 등)와 상관없이 DOM이 로드된 직후 실행<br>
+JavaScript의 .addEventListener()는 IE9 이상에서만 작동하는 점을 유의하자.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// jQuery
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">load</span>(<span style="color:#66d9ef">function</span>(){
+    <span style="color:#75715e">// 실행 코드
+</span><span style="color:#75715e"></span>});
+
+<span style="color:#75715e">// JavaScript
+</span><span style="color:#75715e"></span>window.<span style="color:#a6e22e">onload</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+    <span style="color:#75715e">// 실행 코드
+</span><span style="color:#75715e"></span>};
+</code></pre></div><p>▲ 화면의 모든 콘텐츠(css, script, images, iframe 등)가 구성된 이후 실행</p>
+<blockquote>
+<p>document.ready() &gt; window.load() &gt; body onload 순서로 실행된다.</p>
+</blockquote>
+<h1 id="dom-선택자selector">DOM 선택자(Selector)</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// jQuery
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;#id&#39;</span>); <span style="color:#75715e">// id 선택자
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;.class&#39;</span>); <span style="color:#75715e">// class 선택자
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;div&#39;</span>); <span style="color:#75715e">// element(tag name) 선택자
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;#id, .class&#39;</span>); <span style="color:#75715e">// 다중 선택자
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// JavaScript
+</span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;id&#39;</span>); <span style="color:#75715e">// IE5.5+
+</span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">getElementsByClassName</span>(<span style="color:#e6db74">&#39;class&#39;</span>); <span style="color:#75715e">// IE9+
+</span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">getElementsByTagName</span>(<span style="color:#e6db74">&#39;div&#39;</span>); <span style="color:#75715e">// IE5.5+
+</span><span style="color:#75715e"></span>
+document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#id&#39;</span>); <span style="color:#75715e">// IE8+
+</span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.class&#39;</span>); <span style="color:#75715e">// IE8+ (첫 번째 element의 Node)
+</span><span style="color:#75715e"></span>
+document.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:#e6db74">&#39;.class&#39;</span>); <span style="color:#75715e">// IE8+ (해당 elements의 NodeList)
+</span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:#e6db74">&#39;.class1, .class2&#39;</span>); <span style="color:#75715e">// 다중 선택자
+</span></code></pre></div><p>▲ 자바스크립트의 .querySelector()가 나오면서 선택자가 편해졌다.
+하지만 <strong>jQuery는 Element(s)를 반환</strong>하고, <strong>JavaScript는 Node(NodeList)를 반환</strong>하기 때문에
+jQuery처럼 이벤트를 걸면 동작하지 않는 경우가 있다. <em>(이 부분은 차후 포스팅!)</em></p>
+<blockquote>
+<p>.getElementById()가 .querySelector()보다 빠르다.</p>
+</blockquote>
+<h1 id="메소드">메소드</h1>
+<h2 id="addclass-removeclass-toggleclass-hasclass">.addClass(), removeClass(), toggleClass(), hasClass()</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// jQuery
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$target</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;#test&#39;</span>);
+
+<span style="color:#a6e22e">$target</span>.<span style="color:#a6e22e">addClass</span>(<span style="color:#e6db74">&#39;active&#39;</span>);
+<span style="color:#a6e22e">$target</span>.<span style="color:#a6e22e">removeClass</span>(<span style="color:#e6db74">&#39;active&#39;</span>);
+<span style="color:#a6e22e">$target</span>.<span style="color:#a6e22e">toggleClass</span>(<span style="color:#e6db74">&#39;active&#39;</span>);
+
+<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">$target</span>.<span style="color:#a6e22e">hasClass</span>(<span style="color:#e6db74">&#39;active&#39;</span>)){
+    <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;active 존재!&#39;</span>);
+}
+
+<span style="color:#75715e">// JavaScript
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">target</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#test&#39;</span>); <span style="color:#75715e">// IE8+
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;active&#39;</span>); <span style="color:#75715e">// classList IE10+ 부분적 지원
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">remove</span>(<span style="color:#e6db74">&#39;active&#39;</span>);
+<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">toggle</span>(<span style="color:#e6db74">&#39;active&#39;</span>, <span style="color:#66d9ef">false</span>); <span style="color:#75715e">// 두번째 인자(boolean 타입)는 옵션으로 true시 class 추가, false시 class 삭제, i &lt; 10과 같은 &#39;조건 표현식&#39;도 가능
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">contains</span>(<span style="color:#e6db74">&#39;active&#39;</span>)){
+     <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;active 존재!&#39;</span>);
+}
+<span style="color:#75715e">// or
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">className</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;active&#39;</span>){
+     <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;active 존재!&#39;</span>);
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;active foo bar&#34;</span>&gt;class 여러개&lt;<span style="color:#f92672">div</span>&gt;
+
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;active&#34;</span>&gt;class 하나&lt;<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>▲ class가 여러개 지정된 상태 중 active를 찾아야 하면, <strong>.classList.contains()</strong><br>
+class가 하나만 지정된 상태라면 <strong>.className</strong> 사용 가능</p>
+<h2 id="append">.append()</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// jQuery
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$target</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;#test&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;span&gt; (Add Element)&lt;/span&gt;&#39;</span>;
+
+<span style="color:#a6e22e">$target</span>.<span style="color:#a6e22e">append</span>( <span style="color:#a6e22e">element</span> );
+
+<span style="color:#75715e">// JavaScript
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">target</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#test&#39;</span>); <span style="color:#75715e">// IE8+
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;span&#39;</span>)
+
+<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; (Add Element)&#39;</span>;
+<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">appendChild</span>( <span style="color:#a6e22e">element</span> );
+</code></pre></div><h1 id="스타일">스타일</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// jQuery
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$target</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;#test&#39;</span>);
+<span style="color:#a6e22e">$target</span>.<span style="color:#a6e22e">css</span>(<span style="color:#e6db74">&#39;color&#39;</span>, <span style="color:#e6db74">&#39;green&#39;</span>);
+
+<span style="color:#75715e">// JavaScript
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">target</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#test&#39;</span>); <span style="color:#75715e">// IE8+
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">color</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;green&#39;</span>;
+</code></pre></div><h1 id="정리">정리</h1>
+<p>jQuery 의존도를 낮춰주는 .querySelector(), .addEventListener(), .classList 등을 모두 사용하기 위해서는 IE10 이상이어야 한다.
+신규 프로젝트는 괜찮지만 하위 브라우저까지 지원해야 하는 기존 프로젝트에는 적용이 어렵다. 당장은 jQuery 못잃어..😭</p>
+<h2 id="참고">참고</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/API/EventTarget/addEventListener"  target="_blank" >EventTarget.addEventListener() | MDN</a></li>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/API/Document/getElementById"  target="_blank" >Document.getElementById() | MDN</a></li>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/API/Document/getElementsByClassName"  target="_blank" >Document.getElementsByClassName() | MDN</a></li>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/API/Document/querySelector"  target="_blank" >Document.querySelector() | MDN</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll"  target="_blank" >Document.querySelectorAll() | MDN</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList"  target="_blank" >Element.classList | MDN</a>
+<pre><code>1. Does not have support for classList on SVG or MathML elements.
+2. Does not support the second parameter for the toggle method
+3. Does not support multiple parameters for the add() &amp; remove() methods
+4. Does not support assign to classList or the replace() method
+</code></pre></li>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/API/Element/className"  target="_blank" >Element.className | MDN</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Events"  target="_blank" >Event reference | MDN</a></li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>윈도우 인터넷 익스플로러 7(Windows Internet Explorer 7, IE7)은 2006년 10월 18일에 공개한 웹 브라우저로 윈도우 XP, 윈도우 서버 2003, 윈도우 서버 2003 R2, 윈도우 비스타를 지원한다. 2009년 3월 19일부터는 인터넷 익스플로러 8으로 대체되었다. 인터넷 익스플로러 6(IE6)은 2001년 8월 27일에 출시 2014년 4월 8일 윈도우 XP의 지원이 중단되었다. 구글은 2010년 2월 28일부터 IE6의 일부 지원을 중단하였으며 <a href="https://news.naver.com/main/read.nhn?mode=LSD&amp;mid=sec&amp;sid1=105&amp;oid=138&amp;aid=0001988169"  title="기사 바로가기"  target="_blank" >국내 포털, 게임 사이트</a>들도 2012년 이후부터는 IE6 지원을 중단하였다. (장례식은 2010년 3월 1일, R.I.P.) <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+    <div class="article-info">
+    
+    <div class="article-date">2020.06.16</div>
+    
+    <div class="article-taxonomies">
+        
+        
+        <ul class="article-tags">
+            
+            <li><a href="https://haneunbi.github.io/tags/javascript">#javascript</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/vanillajs">#vanillajs</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/til">#TIL</a></li>
+            
+        </ul>
+        
+    </div>
+</div>
+    
+<footer>
+    <script src="https://utteranc.es/client.js"
+        repo="haneunbi/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script>
+</footer>
+
+</article>
+
+
+        </main>
+        <footer>
+            
+            <p>© B, 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+
+</html>
