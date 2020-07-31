@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    
+    
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>[Web] HTTP와 HTTPS의 차이 - B.log</title>
+<meta name="description" content="Today I Learned">
+
+<link rel="canonical" href="https://haneunbi.github.io/">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://haneunbi.github.io/rss/">
+
+<link rel="icon" type="image/x-icon" href="https://haneunbi.github.io/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="https://haneunbi.github.io/favicon.png">
+
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+<script src="https://haneunbi.github.io/js/custom.js?rnd=1596199758"></script>
+
+<link rel="stylesheet" href="https://haneunbi.github.io/css/style.css?rnd=1596199758">
+<link rel="stylesheet" href="https://haneunbi.github.io/css/custom.css?rnd=1596199758">
+
+<meta property="og:title" content="[Web] HTTP와 HTTPS의 차이" />
+<meta property="og:description" content="웹 브라우저와 웹 서버 간 통신을 위한 규약" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://haneunbi.github.io/2020/07/31/http-vs-https/" />
+<meta property="article:published_time" content="2020-07-31T21:48:44+09:00" />
+<meta property="article:modified_time" content="2020-07-31T21:48:44+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Web] HTTP와 HTTPS의 차이"/>
+<meta name="twitter:description" content="웹 브라우저와 웹 서버 간 통신을 위한 규약"/>
+
+
+
+    
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            
+            <h1 class="site-header">
+    <a href="https://haneunbi.github.io/">B.log</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/about/" title="">About</a>
+    
+    <a class="" href="/posts/" title="">Posts</a>
+    
+    <a class="" href="/tags/" title="">Tags</a>
+    
+</nav>
+
+            
+        </header>
+        <main>
+            
+
+<article class="post">
+    <header>
+        <h1>[Web] HTTP와 HTTPS의 차이</h1>
+    </header>
+    <div class="content">
+        <h1 id="http">HTTP</h1>
+<p>HTTP(HyperText Transfer Protocol)는 주로 HTML(HyperText Markup Language) 문서를 주고받는 데에 쓰이며, 클라이언트(웹 브라우저)와 서버 사이에 이루어지는 요청/응답(request/response) 프로토콜이다.</p>
+<h1 id="https">HTTPS</h1>
+<p>HTTPS(Hypertext Transfer Protocol <strong>Secure</strong>)는 HTTP의 보안 취약점을 해결하기 위한 프로토콜로 <strong>데이터를 암호화된 방식으로 주고받는 통신 규약</strong>을 말한다.
+<a href="https://ko.wikipedia.org/wiki/%EC%A0%84%EC%86%A1_%EA%B3%84%EC%B8%B5_%EB%B3%B4%EC%95%88"  title="위키백과"  target="_blank" >SSL(Secure Sockets Layer, 보안 소켓 계층)과 TLS(Transport Layer Security, 전송 계층 보안)</a>을 사용하여 보안 취약점을 해결한다.
+또한 검색엔진 최적화(SEO)에 있어서도 구글은 HTTPS 웹 사이트에 가산점을 준다.</p>
+<h3 id="프로토콜protocol">프로토콜(Protocol)</h3>
+<p>통신 시스템이 데이터를 교환하기 위해 사용하는 통신 규약이다.</p>
+<h3 id="소켓socket">소켓(Socket)</h3>
+<p>소켓은 네트워크를 경유하는 프로세스 간 통신의 종착점으로 소켓 통신은 HTTP 통신과 달리 네트워크 상에서 서버와 클라이언트가 특정 포트를 통해 양방향 통신을 하는 방식(소프트웨어 장치)이다.</p>
+<h3 id="주요-http-응답-상태-코드">주요 HTTP 응답 상태 코드</h3>
+<p>클라이언트가 서버에 어떠한 요청(request)을 하면, 서버는 세 자리 수로 된 <a href="https://developer.mozilla.org/ko/docs/Web/HTTP/Status"  title="MDN"  target="_blank" >상태 코드</a>와 함께 응답(response)한다.</p>
+<table>
+<thead>
+<tr>
+<th>코드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>요청 성공</td>
+</tr>
+<tr>
+<td>302</td>
+<td>페이지 이동</td>
+</tr>
+<tr>
+<td>401</td>
+<td>인증 실패</td>
+</tr>
+<tr>
+<td>403</td>
+<td>접근 금지</td>
+</tr>
+<tr>
+<td>404</td>
+<td>페이지 없음</td>
+</tr>
+<tr>
+<td>500</td>
+<td>서버 에러</td>
+</tr>
+</tbody>
+</table>
+<p>여기서 말하는 2xx번대, 4xx번대 숫자 그룹이 의미하는 바는 아래와 같다.</p>
+<table>
+<thead>
+<tr>
+<th align="center">코드</th>
+<th>의미</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td>Informational(정보)</td>
+<td>요청을 받고 처리 중에 있음</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td>Success(성공)</td>
+<td>요청을 정상적으로 처리함</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td>Redirection(리다이렉션)</td>
+<td>요청 완료를 위해 추가 동작이 필요함</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td>Client Error(클라이언트 에러)</td>
+<td><strong>클라이언트</strong>의 요청을 처리할 수 없어 에러 발생</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td>Server Error(서버 에러)</td>
+<td><strong>서버</strong>가 요청을 처리할 수 없어 에러 발생</td>
+</tr>
+</tbody>
+</table>
+<h1 id="왜-알아야-할까">왜 알아야 할까?</h1>
+<p>HTTPS 페이지에서 HTTP 프로토콜을 사용하여 리소스(이미지, 동영상, 스타일시트 등)를 요청할 경우 <a href="https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content?hl=ko"  title="Google Developers"  target="_blank" >혼합 콘텐츠</a>가 발생하는데 콘솔에 아래와 같이 &lsquo;보안되지 않은 리소스가 포함되어 있음'을 사용자에게 경고해준다.</p>
+<pre><code>Mixed Content: The page at 'https://URL' was loaded over HTTPS, 
+but requested an insecure resource 'http://resource-URL'. 
+This request has been blocked; the content must be served over HTTPS.
+</code></pre><p>위 오류에 대한 가장 쉬운 해결 방법은 리소스 경로 작성 시 http: 혹은 https: 를 제외하고 작성하면, 현재 웹 페이지의 프로토콜이 자동으로 붙어서 요청된다.
+단, HTTPS를 통해 사용할 수 없는 리소스의 경우는 다른 호스트의 리소스로 변경하거나 리소스를 프로젝트 내에 직접 다운로드 후 호스팅한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://URL&#34;</span>&gt;
+
+<span style="color:#75715e">&lt;!-- http: 혹은 https: 를 제외하고 작성 --&gt;</span>
+&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;//URL&#34;</span>&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">@<span style="color:#66d9ef">import</span> <span style="color:#f92672">url</span><span style="color:#f92672">(//</span><span style="color:#f92672">fonts</span>.<span style="color:#a6e22e">googleapis</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#f92672">earlyaccess</span><span style="color:#f92672">/</span><span style="color:#f92672">kopubbatang</span>.<span style="color:#a6e22e">css</span><span style="color:#f92672">)</span>;
+</code></pre></div><p>▲ 참고로 Google Fonts <a href="https://fonts.google.com/earlyaccess#KoPub&#43;Batang"  target="_blank" >Early Access</a>에서 폰트 경로를 봐도 프로토콜을 제외한 후 작성되어 있는 것을 확인해볼 수 있다.</p>
+<h2 id="참고">참고</h2>
+<ul>
+<li><a href="https://ko.wikipedia.org/wiki/%EC%A0%84%EC%86%A1_%EA%B3%84%EC%B8%B5_%EB%B3%B4%EC%95%88"  target="_blank" >전송 계층 보안 | 위키백과</a></li>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/HTTP/Status"  target="_blank" >HTTP 상태 코드 | MDN</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content?hl=ko"  target="_blank" >혼합 콘텐츠 | Google Developers</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/security/prevent-mixed-content/fixing-mixed-content?hl=ko"  target="_blank" >혼합 콘텐츠 방지 | Google Developers</a></li>
+</ul>
+
+    </div>
+    <div class="article-info">
+    
+    <div class="article-date">2020.07.31</div>
+    
+    <div class="article-taxonomies">
+        
+        
+        <ul class="article-tags">
+            
+            <li><a href="https://haneunbi.github.io/tags/web">#web</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/http">#http</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/%ED%86%B5%EC%8B%A0">#통신</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/til">#TIL</a></li>
+            
+        </ul>
+        
+    </div>
+</div>
+    
+<footer>
+    <script src="https://utteranc.es/client.js"
+        repo="haneunbi/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script>
+</footer>
+
+</article>
+
+
+        </main>
+        <footer>
+            
+            <p>© B, 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+
+</html>

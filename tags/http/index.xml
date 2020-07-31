@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>http on B.log</title>
+    <link>https://haneunbi.github.io/tags/http/</link>
+    <description>B.log (http)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Fri, 31 Jul 2020 21:48:44 +0900</lastBuildDate>
+    
+    <atom:link href="https://haneunbi.github.io/tags/http/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Web] HTTP와 HTTPS의 차이</title>
+      <link>https://haneunbi.github.io/2020/07/31/http-vs-https/</link>
+      <pubDate>Fri, 31 Jul 2020 21:48:44 +0900</pubDate>
+      
+      <guid>https://haneunbi.github.io/2020/07/31/http-vs-https/</guid>
+      <description>&lt;h1 id=&#34;http&#34;&gt;HTTP&lt;/h1&gt;
+&lt;p&gt;HTTP(HyperText Transfer Protocol)는 주로 HTML(HyperText Markup Language) 문서를 주고받는 데에 쓰이며, 클라이언트(웹 브라우저)와 서버 사이에 이루어지는 요청/응답(request/response) 프로토콜이다.&lt;/p&gt;
+&lt;h1 id=&#34;https&#34;&gt;HTTPS&lt;/h1&gt;
+&lt;p&gt;HTTPS(Hypertext Transfer Protocol &lt;strong&gt;Secure&lt;/strong&gt;)는 HTTP의 보안 취약점을 해결하기 위한 프로토콜로 &lt;strong&gt;데이터를 암호화된 방식으로 주고받는 통신 규약&lt;/strong&gt;을 말한다.
+&lt;a href=&#34;https://ko.wikipedia.org/wiki/%EC%A0%84%EC%86%A1_%EA%B3%84%EC%B8%B5_%EB%B3%B4%EC%95%88&#34;  title=&#34;위키백과&#34;  target=&#34;_blank&#34; &gt;SSL(Secure Sockets Layer, 보안 소켓 계층)과 TLS(Transport Layer Security, 전송 계층 보안)&lt;/a&gt;을 사용하여 보안 취약점을 해결한다.
+또한 검색엔진 최적화(SEO)에 있어서도 구글은 HTTPS 웹 사이트에 가산점을 준다.&lt;/p&gt;
+&lt;h3 id=&#34;프로토콜protocol&#34;&gt;프로토콜(Protocol)&lt;/h3&gt;
+&lt;p&gt;통신 시스템이 데이터를 교환하기 위해 사용하는 통신 규약이다.&lt;/p&gt;
+&lt;h3 id=&#34;소켓socket&#34;&gt;소켓(Socket)&lt;/h3&gt;
+&lt;p&gt;소켓은 네트워크를 경유하는 프로세스 간 통신의 종착점으로 소켓 통신은 HTTP 통신과 달리 네트워크 상에서 서버와 클라이언트가 특정 포트를 통해 양방향 통신을 하는 방식(소프트웨어 장치)이다.&lt;/p&gt;
+&lt;h3 id=&#34;주요-http-응답-상태-코드&#34;&gt;주요 HTTP 응답 상태 코드&lt;/h3&gt;
+&lt;p&gt;클라이언트가 서버에 어떠한 요청(request)을 하면, 서버는 세 자리 수로 된 &lt;a href=&#34;https://developer.mozilla.org/ko/docs/Web/HTTP/Status&#34;  title=&#34;MDN&#34;  target=&#34;_blank&#34; &gt;상태 코드&lt;/a&gt;와 함께 응답(response)한다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;코드&lt;/th&gt;
+&lt;th&gt;설명&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;200&lt;/td&gt;
+&lt;td&gt;요청 성공&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;302&lt;/td&gt;
+&lt;td&gt;페이지 이동&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;401&lt;/td&gt;
+&lt;td&gt;인증 실패&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;403&lt;/td&gt;
+&lt;td&gt;접근 금지&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;404&lt;/td&gt;
+&lt;td&gt;페이지 없음&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;500&lt;/td&gt;
+&lt;td&gt;서버 에러&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;여기서 말하는 2xx번대, 4xx번대 숫자 그룹이 의미하는 바는 아래와 같다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;center&#34;&gt;코드&lt;/th&gt;
+&lt;th&gt;의미&lt;/th&gt;
+&lt;th&gt;설명&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td&gt;Informational(정보)&lt;/td&gt;
+&lt;td&gt;요청을 받고 처리 중에 있음&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+&lt;td&gt;Success(성공)&lt;/td&gt;
+&lt;td&gt;요청을 정상적으로 처리함&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;3&lt;/td&gt;
+&lt;td&gt;Redirection(리다이렉션)&lt;/td&gt;
+&lt;td&gt;요청 완료를 위해 추가 동작이 필요함&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;4&lt;/td&gt;
+&lt;td&gt;Client Error(클라이언트 에러)&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;클라이언트&lt;/strong&gt;의 요청을 처리할 수 없어 에러 발생&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;5&lt;/td&gt;
+&lt;td&gt;Server Error(서버 에러)&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;서버&lt;/strong&gt;가 요청을 처리할 수 없어 에러 발생&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;왜-알아야-할까&#34;&gt;왜 알아야 할까?&lt;/h1&gt;
+&lt;p&gt;HTTPS 페이지에서 HTTP 프로토콜을 사용하여 리소스(이미지, 동영상, 스타일시트 등)를 요청할 경우 &lt;a href=&#34;https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content?hl=ko&#34;  title=&#34;Google Developers&#34;  target=&#34;_blank&#34; &gt;혼합 콘텐츠&lt;/a&gt;가 발생하는데 콘솔에 아래와 같이 &amp;lsquo;보안되지 않은 리소스가 포함되어 있음&#39;을 사용자에게 경고해준다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Mixed Content: The page at &#39;https://URL&#39; was loaded over HTTPS, 
+but requested an insecure resource &#39;http://resource-URL&#39;. 
+This request has been blocked; the content must be served over HTTPS.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;위 오류에 대한 가장 쉬운 해결 방법은 리소스 경로 작성 시 http: 혹은 https: 를 제외하고 작성하면, 현재 웹 페이지의 프로토콜이 자동으로 붙어서 요청된다.
+단, HTTPS를 통해 사용할 수 없는 리소스의 경우는 다른 호스트의 리소스로 변경하거나 리소스를 프로젝트 내에 직접 다운로드 후 호스팅한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;img&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;http://URL&amp;#34;&lt;/span&gt;&amp;gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- http: 혹은 https: 를 제외하고 작성 --&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;img&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;//URL&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;@&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;url&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(//&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;fonts&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;googleapis&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;com&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;earlyaccess&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;kopubbatang&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;css&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 참고로 Google Fonts &lt;a href=&#34;https://fonts.google.com/earlyaccess#KoPub&amp;#43;Batang&#34;  target=&#34;_blank&#34; &gt;Early Access&lt;/a&gt;에서 폰트 경로를 봐도 프로토콜을 제외한 후 작성되어 있는 것을 확인해볼 수 있다.&lt;/p&gt;
+&lt;h2 id=&#34;참고&#34;&gt;참고&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://ko.wikipedia.org/wiki/%EC%A0%84%EC%86%A1_%EA%B3%84%EC%B8%B5_%EB%B3%B4%EC%95%88&#34;  target=&#34;_blank&#34; &gt;전송 계층 보안 | 위키백과&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/ko/docs/Web/HTTP/Status&#34;  target=&#34;_blank&#34; &gt;HTTP 상태 코드 | MDN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content?hl=ko&#34;  target=&#34;_blank&#34; &gt;혼합 콘텐츠 | Google Developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developers.google.com/web/fundamentals/security/prevent-mixed-content/fixing-mixed-content?hl=ko&#34;  target=&#34;_blank&#34; &gt;혼합 콘텐츠 방지 | Google Developers&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

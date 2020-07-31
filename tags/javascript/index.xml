@@ -30,7 +30,7 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#test&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// jQuery
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
 document.&lt;span style=&#34;color:#a6e22e&#34;&gt;getElementById&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;test&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// JavaScript
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;내가 jQuery를 사용한 이유는 1차원적으로 선택자 때문이었다.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;내가 jQuery를 사용한 이유는 1차원적으로 CSS 스타일의 선택자 때문이었다.
 id고 class고 tag name을 가리지 않는 만능 선택자 $()를 두고 길기만 한 document.getElementById를 쓰고 싶지 않았다.
 물론 $를 한번 호출할 때마다 성능 저하를 깨닫고부터는 아래와 같이 가능한 변수에 담아두고 쓰거나 최적의 선택자를 쓰도록 노력했다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;window.&lt;span style=&#34;color:#a6e22e&#34;&gt;jQuery&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; window.&lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;jQuery&lt;/span&gt;;
@@ -89,7 +89,7 @@ document.&lt;span style=&#34;color:#a6e22e&#34;&gt;querySelector&lt;/span&gt;(&l
 document.&lt;span style=&#34;color:#a6e22e&#34;&gt;querySelectorAll&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;.class&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// IE8+ (해당 elements의 NodeList)
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;document.&lt;span style=&#34;color:#a6e22e&#34;&gt;querySelectorAll&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;.class1, .class2&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// 다중 선택자
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 자바스크립트의 .querySelector()가 나오면서 선택자가 편해졌다.
-하지만 &lt;strong&gt;jQuery는 Element(s)를 반환&lt;/strong&gt;하고, &lt;strong&gt;JavaScript는 Node(NodeList)를 반환&lt;/strong&gt;하기 때문에
+하지만 &lt;strong&gt;jQuery는 jQuery 객체를 반환&lt;/strong&gt;하고, &lt;strong&gt;JavaScript는 Native JavaScript 객체를 반환&lt;/strong&gt;하기 때문에
 jQuery처럼 이벤트를 걸면 동작하지 않는 경우가 있다. &lt;em&gt;(이 부분은 차후 포스팅!)&lt;/em&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;.getElementById()가 .querySelector()보다 빠르다.&lt;/p&gt;
