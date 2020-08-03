@@ -6,7 +6,7 @@
     <description>B.log (TIL)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-KR</language>
-    <lastBuildDate>Mon, 03 Aug 2020 08:11:55 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 03 Aug 2020 21:18:03 +0900</lastBuildDate>
     
     <atom:link href="https://haneunbi.github.io/tags/til/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>[Web] Webpack이란?</title>
       <link>https://haneunbi.github.io/2020/08/03/webpack/</link>
-      <pubDate>Mon, 03 Aug 2020 08:11:55 +0900</pubDate>
+      <pubDate>Mon, 03 Aug 2020 21:18:03 +0900</pubDate>
       
       <guid>https://haneunbi.github.io/2020/08/03/webpack/</guid>
       <description>&lt;h1 id=&#34;webpack이란&#34;&gt;Webpack이란?&lt;/h1&gt;
@@ -56,7 +56,7 @@ Entry, Output, Loader, Plugin&lt;/p&gt;
 [name].js으로 설정 시 entry에 지정한 (각각의) 파일명으로 저장된다.&lt;/p&gt;
 &lt;h2 id=&#34;loaders&#34;&gt;Loaders&lt;/h2&gt;
 &lt;p&gt;로더는 자바스크립트 파일이 아닌 다른 타입의 리소스(HTML, CSS, Images, Fonts) 파일을 처리하고 변환한다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ npm install --save-dev node-sass style-loader css-loader sass-loader
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ npm install --save-dev node-sass style-loader css-loader sass-loader mini-css-extract-plugin
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// webpack.config.js
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;MiniCssExtractPlugin&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;require&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;mini-css-extract-plugin&amp;#39;&lt;/span&gt;);
 
