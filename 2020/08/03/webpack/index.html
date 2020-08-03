@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    
+    
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>[Web] Webpack이란? - B.log</title>
+<meta name="description" content="Today I Learned">
+
+<link rel="canonical" href="https://haneunbi.github.io/">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://haneunbi.github.io/rss/">
+
+<link rel="icon" type="image/x-icon" href="https://haneunbi.github.io/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="https://haneunbi.github.io/favicon.png">
+
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+<script src="https://haneunbi.github.io/js/custom.js?rnd=1596456937"></script>
+
+<link rel="stylesheet" href="https://haneunbi.github.io/css/style.css?rnd=1596456937">
+<link rel="stylesheet" href="https://haneunbi.github.io/css/custom.css?rnd=1596456937">
+
+<meta property="og:title" content="[Web] Webpack이란?" />
+<meta property="og:description" content="의존 관계에 있는 모듈들을 하나의 파일로 번들링하는 모듈 번들러" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://haneunbi.github.io/2020/08/03/webpack/" />
+<meta property="article:published_time" content="2020-08-03T08:11:55+09:00" />
+<meta property="article:modified_time" content="2020-08-03T21:15:00+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Web] Webpack이란?"/>
+<meta name="twitter:description" content="의존 관계에 있는 모듈들을 하나의 파일로 번들링하는 모듈 번들러"/>
+
+
+
+    
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            
+            <h1 class="site-header">
+    <a href="https://haneunbi.github.io/">B.log</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/about/" title="">About</a>
+    
+    <a class="" href="/posts/" title="">Posts</a>
+    
+    <a class="" href="/tags/" title="">Tags</a>
+    
+</nav>
+
+            
+        </header>
+        <main>
+            
+
+<article class="post">
+    <header>
+        <h1>[Web] Webpack이란?</h1>
+    </header>
+    <div class="content">
+        <h1 id="webpack이란">Webpack이란?</h1>
+<p>Webpack은 의존 관계에 있는 모듈들을 하나의 파일로 번들링하는 모듈 번들러(Module Bundler)이다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Webpack 설치</span>
+$ npm install --save-dev webpack webpack-cli
+</code></pre></div><h2 id="모듈-번들러란">모듈 번들러란?</h2>
+<p>여러 개로 나누어져 있는 파일을 하나의 파일로 묶어 한 번에 요청하고, 코드를 압축하고 최적화하여 로딩 속도를 줄여준다.
+HTML, CSS, JavaScript, Images, Fonts 모두 모듈이다.</p>
+<blockquote>
+<p>웹팩의 주요 속성<br>
+Entry, Output, Loader, Plugin</p>
+</blockquote>
+<h2 id="entry">Entry</h2>
+<p>웹팩이 빌드할 파일의 진입점</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// webpack.config.js
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./src/main.js&#39;</span>
+};
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">main</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./src/main.js&#39;</span>,
+    <span style="color:#a6e22e">login</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./src/login.js&#39;</span>
+  }
+};
+</code></pre></div><p>▲ 엔트리 포인트는 여러 개가 될 수도 있다.</p>
+<h2 id="output">Output</h2>
+<p>빌드 완료 시 결과물이 저장될 경로와 파일명</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// webpack.config.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path&#39;</span>);
+
+<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">__dirname</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/dist&#39;</span>),
+    <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;[name].js&#39;</span>
+  }
+};
+</code></pre></div><p>▲ dist 폴더의 [name].js 파일로 결과 저장<br>
+[name].js으로 설정 시 entry에 지정한 (각각의) 파일명으로 저장된다.</p>
+<h2 id="loaders">Loaders</h2>
+<p>로더는 자바스크립트 파일이 아닌 다른 타입의 리소스(HTML, CSS, Images, Fonts) 파일을 처리하고 변환한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ npm install --save-dev node-sass style-loader css-loader sass-loader
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// webpack.config.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">MiniCssExtractPlugin</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;mini-css-extract-plugin&#39;</span>);
+
+<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">module</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">rules</span><span style="color:#f92672">:</span> [
+      {
+        <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.scss$/</span>,
+        <span style="color:#a6e22e">use</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;MiniCssExtractPlugin.loader&#39;</span>, <span style="color:#e6db74">&#39;css-loader&#39;</span>, <span style="color:#e6db74">&#39;sass-loader&#39;</span>]
+      }
+    ]
+  }
+}
+</code></pre></div><p>▲ 로더 적용 순서는 오른쪽에서 왼쪽 순이다.<br>
+(sass-loader → css-loader → MiniCssExtractPlugin.loader)</p>
+<blockquote>
+<p>module 내 rules 배열에 test와 use 키로 구성된 객체로 설정</p>
+<ul>
+<li>test : 로딩할 파일 지정</li>
+<li>use : 적용할 로더 설정</li>
+</ul>
+</blockquote>
+<h3 id="babel-loader">babel-loader</h3>
+<p>바벨은 ES6(ECMAScript 2015) 사양으로 작성된 코드를 ES5 코드로 바꿔주는 트랜스컴파일러(transcompiler)이다.
+웹팩이 자바스크립트 파일을 번들링하기 전에 바벨을 로드하여 트랜스파일링하는 작업을 실행한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># babel-loader 설치</span>
+$ npm install --save-dev babel-loader
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// webpack.config.js
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">module</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">rules</span><span style="color:#f92672">:</span> [
+      {
+        <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.js$/</span>,
+        <span style="color:#a6e22e">use</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;babel-loader&#39;</span>
+      }
+    ]
+  }
+}
+</code></pre></div><h2 id="plugins">Plugins</h2>
+<p>플러그인은 번들된 결과물(Output)을 처리한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// webpack.config.js
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [
+    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MiniCssExtractPlugin</span>({
+      <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;style.css&#39;</span>
+    })
+  ]
+}
+</code></pre></div><p>▲ 컴파일된 CSS를 별도 분리된 CSS 파일로 만들어준다.</p>
+<h2 id="mode">Mode</h2>
+<ul>
+<li>none : 설정 안함</li>
+<li>development : 개발 모드</li>
+<li>production : 배포 모드 - 성능 최적화 (기본값)</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// webpack.config.js
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;development&#39;</span>
+}
+</code></pre></div><h2 id="참고">참고</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Modules"  target="_blank" >JavaScript modules | MDN</a></li>
+<li><a href="https://poiemaweb.com/es6-babel-webpack-2"  target="_blank" >Webpack | PoiemaWeb</a></li>
+<li><a href="view-source:https://joshua1988.github.io/webpack-guide/webpack/what-is-webpack.html" >웹팩이란? | 웹팩 핸드북</a></li>
+</ul>
+
+    </div>
+    <div class="article-info">
+    
+    <div class="article-date">2020.08.03</div>
+    
+    <div class="article-taxonomies">
+        
+        
+        <ul class="article-tags">
+            
+            <li><a href="https://haneunbi.github.io/tags/web">#web</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/webpack">#webpack</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/til">#TIL</a></li>
+            
+        </ul>
+        
+    </div>
+</div>
+    
+<footer>
+    <script src="https://utteranc.es/client.js"
+        repo="haneunbi/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script>
+</footer>
+
+</article>
+
+
+        </main>
+        <footer>
+            
+            <p>© B, 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+
+</html>
