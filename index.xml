@@ -20,12 +20,13 @@
 &lt;p&gt;Webpack은 의존 관계에 있는 모듈들을 하나의 파일로 번들링하는 모듈 번들러(Module Bundler)이다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Webpack 설치&lt;/span&gt;
 $ npm install --save-dev webpack webpack-cli
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;모듈-번들러란&#34;&gt;모듈 번들러란?&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 번들링 환경은 글로벌에 설치하지 않는다.&lt;/p&gt;
+&lt;h2 id=&#34;모듈-번들러란&#34;&gt;모듈 번들러란?&lt;/h2&gt;
 &lt;p&gt;여러 개로 나누어져 있는 파일을 하나의 파일로 묶어 한 번에 요청하고, 코드를 압축하고 최적화하여 로딩 속도를 줄여준다.
 HTML, CSS, JavaScript, Images, Fonts 모두 모듈이다.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;웹팩의 주요 속성&lt;br&gt;
-Entry, Output, Loader, Plugin&lt;/p&gt;
+Entry, Output, Loaders, Plugins (Mode, Browser Compatibility)&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;entry&#34;&gt;Entry&lt;/h2&gt;
 &lt;p&gt;웹팩이 빌드할 파일의 진입점&lt;/p&gt;
@@ -48,29 +49,33 @@ Entry, Output, Loader, Plugin&lt;/p&gt;
 &lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
   &lt;span style=&#34;color:#a6e22e&#34;&gt;output&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
     &lt;span style=&#34;color:#a6e22e&#34;&gt;path&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;path&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;__dirname&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/dist&amp;#39;&lt;/span&gt;),
-    &lt;span style=&#34;color:#a6e22e&#34;&gt;filename&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;[name].js&amp;#39;&lt;/span&gt;
-  }
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;filename&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;[name].js&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;// &amp;#39;bundle.js&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  }
 };
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ dist 폴더의 [name].js 파일로 결과 저장&lt;br&gt;
 [name].js으로 설정 시 entry에 지정한 (각각의) 파일명으로 저장된다.&lt;/p&gt;
 &lt;h2 id=&#34;loaders&#34;&gt;Loaders&lt;/h2&gt;
 &lt;p&gt;로더는 자바스크립트 파일이 아닌 다른 타입의 리소스(HTML, CSS, Images, Fonts) 파일을 처리하고 변환한다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ npm install --save-dev node-sass style-loader css-loader sass-loader mini-css-extract-plugin
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// webpack.config.js
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;MiniCssExtractPlugin&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;require&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;mini-css-extract-plugin&amp;#39;&lt;/span&gt;);
-
-&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ npm install --save-dev node-sass style-loader css-loader sass-loader
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ node-sass는 &lt;a href=&#34;https://sass-lang.com/libsass&#34;  target=&#34;_blank&#34; &gt;LibSass&lt;/a&gt;를 Node.js 환경에서 사용하기 위한 라이브러리 (Ruby Sass를 C/C++로 포팅)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sass-loader는 Node Sass를 사용하여 Sass를 CSS로 컴파일로 하고,&lt;/li&gt;
+&lt;li&gt;css-loader는 CSS를 CommonJS로 변환해주며,&lt;/li&gt;
+&lt;li&gt;style-loader는 JS 문자열에서 style 태그를 만들어 head 태그 안에 넣어준다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// webpack.config.js
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
   &lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
     &lt;span style=&#34;color:#a6e22e&#34;&gt;rules&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; [
       {
         &lt;span style=&#34;color:#a6e22e&#34;&gt;test&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/\.scss$/&lt;/span&gt;,
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;use&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;MiniCssExtractPlugin.loader&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;css-loader&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;sass-loader&amp;#39;&lt;/span&gt;]
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;use&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;style-loader&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;css-loader&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;sass-loader&amp;#39;&lt;/span&gt;]
       }
     ]
   }
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 로더 적용 순서는 오른쪽에서 왼쪽 순이다.&lt;br&gt;
-(sass-loader → css-loader → MiniCssExtractPlugin.loader)&lt;/p&gt;
+(sass-loader → css-loader → style-loader)&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;module 내 rules 배열에 test와 use 키로 구성된 객체로 설정&lt;/p&gt;
 &lt;ul&gt;
@@ -96,15 +101,27 @@ $ npm install --save-dev babel-loader
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;plugins&#34;&gt;Plugins&lt;/h2&gt;
 &lt;p&gt;플러그인은 번들된 결과물(Output)을 처리한다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// webpack.config.js
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# mini-css-extract-plugin 설치&lt;/span&gt;
+$ npm install --save-dev mini-css-extract-plugin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// webpack.config.js
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;MiniCssExtractPlugin&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;require&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;mini-css-extract-plugin&amp;#39;&lt;/span&gt;);
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+  &lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;rules&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; [
+      {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;test&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/\.scss$/&lt;/span&gt;,
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;use&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;MiniCssExtractPlugin.loader&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;css-loader&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;sass-loader&amp;#39;&lt;/span&gt;]
+      }
+    ]
+  },
   &lt;span style=&#34;color:#a6e22e&#34;&gt;plugins&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; [
     &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;MiniCssExtractPlugin&lt;/span&gt;({
       &lt;span style=&#34;color:#a6e22e&#34;&gt;filename&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;style.css&amp;#39;&lt;/span&gt;
     })
   ]
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 컴파일된 CSS를 별도 분리된 CSS 파일로 만들어준다.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ JavaScript 번들에서 CSS를 별도의 파일(style.css)로 추출한다.&lt;/p&gt;
 &lt;h2 id=&#34;mode&#34;&gt;Mode&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;none : 설정 안함&lt;/li&gt;
@@ -117,7 +134,9 @@ $ npm install --save-dev babel-loader
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;참고&#34;&gt;참고&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://v4.webpack.js.org/concepts/&#34;  target=&#34;_blank&#34; &gt;Concepts | webpack&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Modules&#34;  target=&#34;_blank&#34; &gt;JavaScript modules | MDN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://webclub.tistory.com/635&#34;  target=&#34;_blank&#34; &gt;Webpack Guide for beginner #1 | Web Club&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://poiemaweb.com/es6-babel-webpack-2&#34;  target=&#34;_blank&#34; &gt;Webpack | PoiemaWeb&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;view-source:https://joshua1988.github.io/webpack-guide/webpack/what-is-webpack.html&#34; &gt;웹팩이란? | 웹팩 핸드북&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
