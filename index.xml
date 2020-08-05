@@ -20,7 +20,7 @@
 &lt;p&gt;Webpack은 의존 관계에 있는 모듈들을 하나의 파일로 번들링하는 모듈 번들러(Module Bundler)이다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Webpack 설치&lt;/span&gt;
 $ npm install --save-dev webpack webpack-cli
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 번들링 환경은 글로벌에 설치하지 않는다.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 번들링 환경은 로컬로 설치한다.&lt;/p&gt;
 &lt;h2 id=&#34;모듈-번들러란&#34;&gt;모듈 번들러란?&lt;/h2&gt;
 &lt;p&gt;여러 개로 나누어져 있는 파일을 하나의 파일로 묶어 한 번에 요청하고, 코드를 압축하고 최적화하여 로딩 속도를 줄여준다.
 HTML, CSS, JavaScript, Images, Fonts 모두 모듈이다.&lt;/p&gt;
@@ -138,7 +138,7 @@ $ npm install --save-dev mini-css-extract-plugin
 &lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Modules&#34;  target=&#34;_blank&#34; &gt;JavaScript modules | MDN&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://webclub.tistory.com/635&#34;  target=&#34;_blank&#34; &gt;Webpack Guide for beginner #1 | Web Club&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://poiemaweb.com/es6-babel-webpack-2&#34;  target=&#34;_blank&#34; &gt;Webpack | PoiemaWeb&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;view-source:https://joshua1988.github.io/webpack-guide/webpack/what-is-webpack.html&#34; &gt;웹팩이란? | 웹팩 핸드북&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://joshua1988.github.io/webpack-guide/webpack/what-is-webpack.html&#34;  target=&#34;_blank&#34; &gt;웹팩이란? | 웹팩 핸드북&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
