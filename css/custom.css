@@ -17,10 +17,16 @@ footer{font-size:13px;text-align:right}
 .article-tags a{color:#1d60a3}
 .post .content h1::before,
 .post .content h2::before,
-.post .content h3::before{content:'#';margin-right:1px;font-weight:normal}
-.post .content h1::before{color:#fcbc0e}
-.post .content h2::before{color:#999}
-.post .content h3::before{color:#bbb}
+.post .content h3::before,
+.post .content h4::before,
+.post .content h5::before,
+.post .content h6::before{content:'#';margin-right:2px;font-weight:normal}
+.post .content h1::before{color:#42b983}
+.post .content h2::before{color:#fcbc0e}
+.post .content h3::before{color:#999}
+.post .content h4::before,
+.post .content h5::before,
+.post .content h6::before{color:#bbb}
 .post .content table{font-size:0.85em}
 .post-short-list .article-info{margin-top:2px}
 .post .article-info{margin-top:2.4em}

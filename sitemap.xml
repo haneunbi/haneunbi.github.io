@@ -3,27 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://haneunbi.github.io/2020/08/03/webpack/</loc>
-    <lastmod>2020-08-05T16:29:54+09:00</lastmod>
+    <loc>https://haneunbi.github.io/2020/08/13/seo/</loc>
+    <lastmod>2020-08-13T21:25:25+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://haneunbi.github.io/posts/</loc>
-    <lastmod>2020-08-05T16:29:54+09:00</lastmod>
+    <lastmod>2020-08-13T21:25:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://haneunbi.github.io/tags/seo/</loc>
+    <lastmod>2020-08-13T21:25:25+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://haneunbi.github.io/tags/</loc>
-    <lastmod>2020-08-05T16:29:54+09:00</lastmod>
+    <lastmod>2020-08-13T21:25:25+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://haneunbi.github.io/tags/til/</loc>
-    <lastmod>2020-08-05T16:29:54+09:00</lastmod>
+    <lastmod>2020-08-13T21:25:25+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://haneunbi.github.io/tags/web/</loc>
+    <lastmod>2020-08-13T21:25:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://haneunbi.github.io/2020/08/03/webpack/</loc>
     <lastmod>2020-08-05T16:29:54+09:00</lastmod>
   </url>
   
@@ -114,12 +124,12 @@
   
   <url>
     <loc>https://haneunbi.github.io/about/</loc>
-    <lastmod>2020-04-17T10:18:04+09:00</lastmod>
+    <lastmod>2020-08-11T13:26:47+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://haneunbi.github.io/</loc>
-    <lastmod>2020-04-17T10:18:04+09:00</lastmod>
+    <lastmod>2020-08-11T13:26:47+09:00</lastmod>
   </url>
   
   <url>

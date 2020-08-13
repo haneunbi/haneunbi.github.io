@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    
+    
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>[Web] 검색 엔진 최적화(SEO)란 무엇인가? - B.log</title>
+<meta name="description" content="Today I Learned">
+
+<meta property="og:title" content="[Web] 검색 엔진 최적화(SEO)란 무엇인가?" />
+<meta property="og:description" content="검색엔진 최적화란 검색엔진이 콘텐츠를 이해하고 제공하도록 돕는 것" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://haneunbi.github.io/2020/08/13/seo/" />
+<meta property="article:published_time" content="2020-08-13T21:17:32+09:00" />
+<meta property="article:modified_time" content="2020-08-13T21:25:25+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Web] 검색 엔진 최적화(SEO)란 무엇인가?"/>
+<meta name="twitter:description" content="검색엔진 최적화란 검색엔진이 콘텐츠를 이해하고 제공하도록 돕는 것"/>
+
+
+<link rel="canonical" href="https://haneunbi.github.io/">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://haneunbi.github.io/rss/">
+
+<link rel="icon" type="image/png" href="https://haneunbi.github.io/favicon.png">
+<link rel="apple-touch-icon" href="https://haneunbi.github.io/favicon.png">
+
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+<script src="https://haneunbi.github.io/js/custom.js?rnd=1597321537"></script>
+
+<link rel="stylesheet" href="https://haneunbi.github.io/css/style.css?rnd=1597321537">
+<link rel="stylesheet" href="https://haneunbi.github.io/css/custom.css?rnd=1597321537">
+
+
+    
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            
+            <h1 class="site-header">
+    <a href="https://haneunbi.github.io/">B.log</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/about/" title="">About</a>
+    
+    <a class="" href="/posts/" title="">Posts</a>
+    
+    <a class="" href="/tags/" title="">Tags</a>
+    
+</nav>
+
+            
+        </header>
+        <main>
+            
+
+<article class="post">
+    <header>
+        <h1>[Web] 검색 엔진 최적화(SEO)란 무엇인가?</h1>
+    </header>
+    <div class="content">
+        <p>검색 엔진 최적화(Search Engine Optimization, SEO)란 사이트 내 콘텐츠 정보를 검색 엔진이 잘 이해할 수 있도록 정리하는 것으로 <strong>검색 결과의 상위에 나올 수 있도록 하는 작업</strong>을 말한다.
+각 포털사는 검색 엔진에 친화적인 사이트를 우대하기 때문에 <strong>사이트의 방문자 유입 증가</strong>를 위한 필수적인 작업이다.</p>
+<blockquote>
+<p>사이트가 포털에 검색되는 방식은,<br>
+검색 엔진의 <strong>크롤러</strong>(검색 로봇)가 웹을 <strong>크롤링</strong>(신규/업데이트된 웹페이지를 찾는 프로세스)하면서 페이지에서 페이지로 링크를 따라가고,
+찾은 콘텐츠의 <strong>색인</strong>(해당 페이지의 콘텐츠 및 URL 명시)을 생성한다. 검색 결과에 보이는 것은 바로 그 콘텐츠 색인이다.</p>
+</blockquote>
+<h1 id="콘텐츠-마크업">콘텐츠 마크업</h1>
+<p>검색 엔진에 친화적인 사이트를 구축하기 위해서는 웹표준에 적합한 HTML 마크업을 사용해야 한다.
+또한 검색 엔진이 참고하는 정보는 사용자의 눈에 보이는 콘텐츠도 포함되지만 사용자의 눈에 보이지 않는 메타 영역도 존재한다.</p>
+<h2 id="선호-url-대표-url-지정">선호 URL (=대표 URL) 지정</h2>
+<p>URL 표현 시에는 상대 경로가 아닌 <strong>절대 경로를 사용</strong>해야 한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;canonical&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com/article/article1.html&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+</code></pre></div><h2 id="로봇-메타-태그">로봇 메타 태그</h2>
+<p>로봇 메타 태그는 페이지 별로 검색 로봇의 접근 여부를 제어할 수 있는 정보이다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">head</span>&gt;
+<span style="color:#75715e">&lt;!-- 기본 설정 (태그를 쓰지 않아도 무방) --&gt;</span>
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;robots&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;index,follow&#34;</span>&gt; 
+
+<span style="color:#75715e">&lt;!-- 색인 대상으로 처리, 페이지 내 링크 미 수집 --&gt;</span>
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;robots&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;index,nofollow&#34;</span>&gt;
+
+<span style="color:#75715e">&lt;!-- 색인 대상에서 제외, 페이지 내 링크 수집 --&gt;</span>
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;robots&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;noindex,follow&#34;</span>&gt;
+
+<span style="color:#75715e">&lt;!-- 색인 대상에서 제외, 페이지 내 링크 미 수집 --&gt;</span>
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;robots&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;noindex,nofollow&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+</code></pre></div><blockquote>
+<p>HTML 문서의 <em><strong>head</strong></em> 태그 내에 있는 <em><strong>meta</strong></em> 태그 외에
+검색 로봇에게 사이트 및 웹페이지를 수집할 수 있도록
+허용하거나 제한하는 국제 권고안인 robots.txt 파일을 두는 방법이 있으며,
+만약 사이트의 루트 디렉터리에 robots.txt 파일이 없다면 모든 콘텐츠를 수집할 수 있도록 간주한다.<br>
+<a href="https://searchadvisor.naver.com/guide/seo-basic-robots"  title="네이버 서치어드바이저"  target="_blank" >robot.txt 설정 자세히 보기</a></p>
+</blockquote>
+<h2 id="페이지-제목">페이지 제목</h2>
+<p>페이지 콘텐츠에 맞는 고유한 제목을 기입한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">title</span>&gt;페이지 제목&lt;/<span style="color:#f92672">title</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+</code></pre></div><h2 id="페이지-설명">페이지 설명</h2>
+<p>페이지의 콘텐츠에 대한 간략한 설명으로 1-2개의 문장으로 구성된 짧은 단락을 사용한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;description&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;페이지 설명&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+</code></pre></div><h2 id="오픈-그래프-open-graph">오픈 그래프 (Open Graph)</h2>
+<p>오픈 그래프 태그는 사이트가 소셜 미디어로 공유될 때 우선적으로 활용되는 정보이다.
+사이트의 제목, 설명과 더불어서 사이트를 대표하는 이미지(권장 해상도: 1200x627 px, 1.91:1))도 같이 넣어준다. (자세한 내용은 <a href="http://ogp.me">http://ogp.me</a> 참고)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:type&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;website&#34;</span>&gt; 
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:title&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;페이지 제목&#34;</span>&gt;
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:description&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;페이지 설명&#34;</span>&gt;
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:image&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com/myimage.jpg&#34;</span>&gt;
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:url&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+</code></pre></div><ul>
+<li><a href="https://developers.facebook.com/docs/sharing/webmasters/?locale=ko_KR"  target="_blank" >오픈 그래프 마크업 | Facebook for Developers</a></li>
+<li><a href="https://developers.facebook.com/tools/debug/sharing"  target="_blank" >오픈 그래프 검증 | Facebook for Developers</a></li>
+</ul>
+<h2 id="트위터-카드-twitter-cards">트위터 카드 (Twitter Cards)</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;twitter:card&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;summary&#34;</span>&gt;
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;twitter:title&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;페이지 제목&#34;</span>&gt;
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;twitter:description&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;페이지 설명&#34;</span>&gt;
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;twitter:image&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com/myimage.jpg&#34;</span>&gt;
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;twitter:url&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+</code></pre></div><ul>
+<li><a href="https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/markup"  target="_blank" >트위터 카드 마크업 | Twitter Developer</a></li>
+<li><a href="https://cards-dev.twitter.com/validator"  target="_blank" >트위터 카드 검증 | Twitter Developer</a></li>
+</ul>
+<h2 id="파비콘-favorites-icon-favicon">파비콘 (Favorites icon, Favicon)</h2>
+<p>파비콘이 위치(루트 디렉토리)하는 href 에는 상대 경로가 아닌 <strong>절대 경로를 사용</strong>해야 하며
+파비콘 사이즈는 너비와 높이가 동일한 정사각형이어야 한다. (16x16, 32x32 px)
+<a href="https://en.wikipedia.org/wiki/Favicon#File_format_support"  title="위키백과"  target="_blank" >파일 포맷 참고</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">head</span>&gt;
+<span style="color:#75715e">&lt;!-- IE 10 이하 --&gt;</span>
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;shortcut icon&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/favicon.ico&#34;</span>&gt;
+ 
+<span style="color:#75715e">&lt;!-- 브라우저용 표준 (IE11+)--&gt;</span>
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;icon&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image/png&#34;</span> <span style="color:#a6e22e">sizes</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;32x32&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com/favicon-32.png&#34;</span>&gt;
+ 
+<span style="color:#75715e">&lt;!-- Android --&gt;</span>
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;icon&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com/favicon-192.png&#34;</span>&gt;
+ 
+<span style="color:#75715e">&lt;!-- Apple --&gt;</span>
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;apple-touch-icon&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com/favicon-57.png&#34;</span>&gt;
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;apple-touch-icon&#34;</span> <span style="color:#a6e22e">sizes</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;152x152&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com/favicon-152.png&#34;</span>&gt; <span style="color:#75715e">&lt;!-- iPad --&gt;</span>
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;apple-touch-icon&#34;</span> <span style="color:#a6e22e">sizes</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;167x167&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com/favicon-167.png&#34;</span>&gt; <span style="color:#75715e">&lt;!-- iPad Retina --&gt;</span>
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;apple-touch-icon&#34;</span> <span style="color:#a6e22e">sizes</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;180x180&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com/favicon-180.png&#34;</span>&gt; <span style="color:#75715e">&lt;!-- iPhone 6 plus+ (IOS8+) --&gt;</span>
+&lt;/<span style="color:#f92672">head</span>&gt;
+</code></pre></div><h1 id="모바일-사용성">모바일 사용성</h1>
+<h2 id="반응형-웹">반응형 웹</h2>
+<p>반응형 웹은 웹 브라우저가 웹 문서의 가로폭을 기기의 스크린 크기에 맞게 자동적으로 조절하는 기법이다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+</code></pre></div><h2 id="별도의-모바일-url-제공">별도의 모바일 URL 제공</h2>
+<p>동일한 콘텐츠에 대하여 데스크톱 사이트에 대응하는 별도의 모바일 사이트가 있다면 <strong>모바일 사이트의 페이지에 1:1로 대응되는 데스크톱 사이트의 URL을 명시적으로 지정</strong>하는 것을 권장한다.</p>
+<blockquote>
+<p>데스크톱 사이트로 <a href="http://www.mysite.com">http://www.mysite.com</a>이 있고 그와 대응하는 모바일 사이트인 <a href="http://m.mysite.com">http://m.mysite.com</a>이 있다고 가정한다면
+<a href="http://m.mysite.com">http://m.mysite.com</a> 내의 페이지에 아래와 같이 데스크톱의 URL을 명시하는 것이 좋다.</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;canonical&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com/&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+</code></pre></div><p>▲ 모바일 사이트의 메인 페이지(<a href="http://m.mysite.com/">http://m.mysite.com/</a>)에 데스크톱 사이트의 URL 지정</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;canonical&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com/article/article1.html&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+</code></pre></div><p>▲ 모바일 사이트의 개별 웹 페이지(<a href="http://m.mysite.com/article/article1.html">http://m.mysite.com/article/article1.html</a>)에 데스크톱 사이트의 URL 지정</p>
+<h1 id="모바일-중심-색인-생성-">모바일 중심 색인 생성 ⭐</h1>
+<p>구글은 색인을 생성하고 순위를 지정하는 데 <a href="https://developers.google.com/search/mobile-sites/mobile-first-indexing?hl=ko"  title="개발자를 위한 Google 검색 | Google Developers"  target="_blank" >모바일 버전의 콘텐츠를 우선적으로 사용</a>한다.
+또한 구글은 페이지 로딩 속도를 검색 순위에 사용하기 때문에 구글이 제공하는 <a href="https://search.google.com/test/mobile-friendly?hl=ko"  title="Search Test Tool"  target="_blank" >모바일 친화성 테스트</a>와 <a href="https://developers.google.com/speed/pagespeed/insights/"  title="PageSpeed Insights"  target="_blank" >속도 테스크</a>를 통해 점검해 보자.</p>
+<blockquote>
+<p>구글이 좋아하는 웹 사이트의 3대 조건</p>
+<ol>
+<li>보안 프로토콜이 적용된 웹 사이트</li>
+<li>모바일 친화성을 갖춘 웹 사이트</li>
+<li>페이지 로딩 속도가 빠른 웹 사이트</li>
+</ol>
+</blockquote>
+<h1 id="seo-마크업-예시">SEO 마크업 예시</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ko&#34;</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">http-equiv</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;X-UA-Compatible&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;IE=edge&#34;</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;
+    &lt;<span style="color:#f92672">title</span>&gt;페이지 제목&lt;/<span style="color:#f92672">title</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width,initial-scale=1&#34;</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;description&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;페이지 설명&#34;</span>&gt;
+
+    <span style="color:#75715e">&lt;!-- Open Graphy --&gt;</span>
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:type&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;website&#34;</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:title&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;페이지 제목&#34;</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:description&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;페이지 설명&#34;</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:image&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com/myimage.jpg&#34;</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:url&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com&#34;</span>&gt;
+
+    <span style="color:#75715e">&lt;!-- Twitter Card --&gt;</span>
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;twitter:card&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;summary&#34;</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;twitter:title&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;페이지 제목&#34;</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;twitter:description&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;페이지 설명&#34;</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;twitter:image&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com/myimage.jpg&#34;</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;twitter:url&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com&#34;</span>&gt;
+
+    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;shortcut icon&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com/favicon.ico&#34;</span>&gt;
+    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;canonical&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.mysite.com&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+
+&lt;<span style="color:#f92672">body</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;wrap&#34;</span>&gt;
+        <span style="color:#75715e">&lt;!-- 콘텐츠 작성 --&gt;</span>
+    &lt;/<span style="color:#f92672">div</span>&gt; <span style="color:#75715e">&lt;!-- //wrap --&gt;</span>
+&lt;/<span style="color:#f92672">body</span>&gt;
+
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>가장 처음에 나오는 호환성 보기 관련 메타 태그에 대해 부연 설명을 하자면,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">http-equiv</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;X-UA-Compatible&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;IE=edge&#34;</span>&gt; <span style="color:#75715e">&lt;!-- 1. 호환성 보기 --&gt;</span>
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt; <span style="color:#75715e">&lt;!-- 2 --&gt;</span>
+    &lt;<span style="color:#f92672">title</span>&gt;페이지 제목&lt;/<span style="color:#f92672">title</span>&gt; <span style="color:#75715e">&lt;!-- 3 --&gt;</span>
+    ...
+&lt;/<span style="color:#f92672">head</span>&gt;
+</code></pre></div><blockquote>
+<ol>
+<li>IE 브라우저에서 최신 표준 모드로 렌더링하도록 설정한다.<br>
+(호환성 보기 메타 태그는 <em><strong>head</strong></em> 태그의 가장 처음에 위치해야 함)</li>
+<li>모든 브라우저에서 사용할 인코딩을 설정한다.</li>
+<li>위 정의 된 인코딩으로 페이지 제목을 출력한다.</li>
+</ol>
+</blockquote>
+<h3 id="마지막으로-한가지-드는-의문점-">마지막으로 한가지 드는 의문점 ❓</h3>
+<blockquote>
+<p>기본 <em><strong>title</strong></em> 태그와 <em><strong>description</strong></em> 메타 태그가 있을 경우, 오픈 그래프와 트위터 카드의 메타 태그가 각각 꼭 필요할까?</p>
+</blockquote>
+<p>Facebook이 페이지에서 og 태그를 찾지 못하면 대신 메타의 제목과 설명을 사용하고,
+Twitter 역시 Twitter Card 관련 태그를 먼저 확인하고 존재하지 않는 경우 지원되는 오픈 그래프 속성으로 대체한다고 하는 데..</p>
+<p>그러면 중복 기능을 하는 태그를 줄이는 것이 좋을지, 같은 기능을 할지언정 따로 두는 게 더 좋을지 의문이다.
+혹시 아시는 분이 계시다면 댓글 부탁드려요 😄</p>
+<h2 id="참고">참고</h2>
+<ul>
+<li><a href="https://www.google.com/webmasters/learn/"  target="_blank" >Google 웹마스터</a></li>
+<li><a href="https://support.google.com/webmasters/answer/35769?hl=ko"  target="_blank" >웹마스터 가이드라인 | 구글 Search Console 고객센터</a></li>
+<li><a href="https://searchadvisor.naver.com/guide"  target="_blank" >웹마스터 가이드 | 네이버 서치어드바이저</a></li>
+<li><a href="https://developers.facebook.com/docs/sharing/webmasters"  target="_blank" >웹 마스터 공유 가이드 | Facebook for Developers</a></li>
+<li><a href="https://search.google.com/test/mobile-friendly?hl=ko"  target="_blank" >모바일 친화성 테스트 | Google</a></li>
+<li><a href="https://developers.google.com/speed/pagespeed/insights/"  target="_blank" >PageSpeed Insights | Google</a></li>
+</ul>
+
+    </div>
+    <div class="article-info">
+    
+    <div class="article-date">2020.08.13</div>
+    
+    <div class="article-taxonomies">
+        
+        
+        <ul class="article-tags">
+            
+            <li><a href="https://haneunbi.github.io/tags/web">#web</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/seo">#SEO</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/til">#TIL</a></li>
+            
+        </ul>
+        
+    </div>
+</div>
+    
+<footer>
+    <script src="https://utteranc.es/client.js"
+        repo="haneunbi/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script>
+</footer>
+
+</article>
+
+
+        </main>
+        <footer>
+            
+            <p>© B, 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+
+</html>
