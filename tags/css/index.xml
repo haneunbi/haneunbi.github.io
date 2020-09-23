@@ -6,10 +6,136 @@
     <description>B.log (css)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-KR</language>
-    <lastBuildDate>Fri, 05 Jun 2020 19:27:13 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2020 19:38:55 +0900</lastBuildDate>
     
     <atom:link href="https://haneunbi.github.io/tags/css/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[SCSS] SCSS to CSS Compile</title>
+      <link>https://haneunbi.github.io/2020/09/23/scss-to-css/</link>
+      <pubDate>Wed, 23 Sep 2020 19:38:55 +0900</pubDate>
+      
+      <guid>https://haneunbi.github.io/2020/09/23/scss-to-css/</guid>
+      <description>&lt;p&gt;CSS를 다룰 줄 아는 사람에게 SCSS 작성 자체는 크게 어렵지 않다.
+하지만 마크업 개발자(웹퍼블리셔)의 경우 문서를 컴파일(트랜스파일링)할 경우가 많지 않기 때문에
+이 과정이 낯선 경우가 있어 정리하고자 한다.&lt;/p&gt;
+&lt;h2 id=&#34;clicommand-line-interface로-컴파일&#34;&gt;CLI(Command Line Interface)로 컴파일&lt;/h2&gt;
+&lt;h3 id=&#34;1-nodejshttpsnodejsorgko를-설치한다-자동으로-npmhttpswwwnpmjscom이-함께-설치된다&#34;&gt;1. &lt;a href=&#34;https://nodejs.org/ko/&#34;  target=&#34;_blank&#34; &gt;Node.js&lt;/a&gt;를 설치한다. (자동으로 &lt;a href=&#34;https://www.npmjs.com/&#34;  target=&#34;_blank&#34; &gt;npm&lt;/a&gt;이 함께 설치된다.)&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ node -v
+v8.12.0
+$ npm -v
+6.4.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ Node.js와 npm의 버전을 출력하여 설치 여부를 확인할 수 있다.&lt;/p&gt;
+&lt;h3 id=&#34;2-node-sass를-설치한다&#34;&gt;2. node-sass를 설치한다.&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ npm install -g node-sass
+$ node-sass -v
+node-sass       4.14.1  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;Wrapper&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;       &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;JavaScript&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+libsass         3.5.5   &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;Sass Compiler&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;C/C++&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 전역으로 node-sass를 설치하고 버전 확인&lt;/p&gt;
+&lt;h3 id=&#34;3-프로젝트-루트에서-npm-init-명령어를-실행한다-생략-가능&#34;&gt;3. 프로젝트 루트에서 npm init 명령어를 실행한다. (생략 가능)&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ npm init -y
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 기본 설정값(-y/&amp;ndash;yes)으로 &lt;em&gt;&lt;strong&gt;package.json&lt;/strong&gt;&lt;/em&gt;이 생성된다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;dependencies&amp;#34;&lt;/span&gt;: {
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;node-sass&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;4.14.1&amp;#34;&lt;/span&gt;
+  },
+  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;scripts&amp;#34;&lt;/span&gt;: {
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;scss&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;node-sass --output-style compact --watch scss --output css&amp;#34;&lt;/span&gt;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ &lt;em&gt;&lt;strong&gt;package.json&lt;/strong&gt;&lt;/em&gt; 문서 내 &lt;em&gt;&lt;strong&gt;scripts&lt;/strong&gt;&lt;/em&gt;를 추가한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ npm run scss
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 콘솔창에 &lt;em&gt;&lt;strong&gt;npm run scss&lt;/strong&gt;&lt;/em&gt;를 입력하면 scss 폴더에 있는 파일이 컴파일되어 css 폴더에 생성된다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;package.json&lt;/strong&gt;&lt;/em&gt; 문서를 생성하여 스크립트를 추가하지 않고
+콘솔창에 직접 &lt;em&gt;&lt;strong&gt;node-sass &amp;ndash;output-style compact &amp;ndash;watch scss &amp;ndash;output css&lt;/strong&gt;&lt;/em&gt;를 써도 무관하다. (단지 매번 번거로울 뿐..)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ node-sass --output-style compact --watch scss --output css
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 위 명령어에 대한 부연설명을 덧붙이자면,&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&amp;ndash;output-style&lt;/strong&gt;&lt;/em&gt;&lt;br&gt;
+css 스타일에 대한 것으로 아래 4가지 중 하나를 선택한다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;nested&lt;/strong&gt; : (기본값) 마지막 중괄호를 줄바꿈하지 않는 스타일
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt; {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;color&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;#333&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;font-size&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;font-family&lt;/span&gt;: Arial, &lt;span style=&#34;color:#66d9ef&#34;&gt;sans-serif&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;line-height&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;125&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;%&lt;/span&gt;; }
+
+.&lt;span style=&#34;color:#a6e22e&#34;&gt;content&lt;/span&gt; {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;margin&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;width&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;%&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;max-width&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;960&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt;; }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;expanded&lt;/strong&gt; : 표준 CSS 스타일
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt; {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;color&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;#333&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;font-size&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;font-family&lt;/span&gt;: Arial, &lt;span style=&#34;color:#66d9ef&#34;&gt;sans-serif&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;line-height&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;125&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;%&lt;/span&gt;;
+}
+
+.&lt;span style=&#34;color:#a6e22e&#34;&gt;content&lt;/span&gt; {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;margin&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;width&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;%&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;max-width&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;964&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;compact&lt;/strong&gt; : 각 선택자는 줄바꿈으로 구분하고 속성은 공백으로 구분하는 스타일
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt; { &lt;span style=&#34;color:#66d9ef&#34;&gt;color&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;#333&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;font-size&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;font-family&lt;/span&gt;: Arial, &lt;span style=&#34;color:#66d9ef&#34;&gt;sans-serif&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;line-height&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;125&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;%&lt;/span&gt;; }
+
+.&lt;span style=&#34;color:#a6e22e&#34;&gt;content&lt;/span&gt; { &lt;span style=&#34;color:#66d9ef&#34;&gt;margin&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;width&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;%&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;max-width&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;960&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt;; }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;compressed&lt;/strong&gt; : 공백이 없는 압축된 스타일(style.min.css)
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;{&lt;span style=&#34;color:#66d9ef&#34;&gt;color&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;#333&lt;/span&gt;;&lt;span style=&#34;color:#66d9ef&#34;&gt;font-size&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt;;&lt;span style=&#34;color:#66d9ef&#34;&gt;font-family&lt;/span&gt;:Arial,&lt;span style=&#34;color:#66d9ef&#34;&gt;sans-serif&lt;/span&gt;;&lt;span style=&#34;color:#66d9ef&#34;&gt;line-height&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;125&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;%&lt;/span&gt;}.&lt;span style=&#34;color:#a6e22e&#34;&gt;content&lt;/span&gt;{&lt;span style=&#34;color:#66d9ef&#34;&gt;margin&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;;&lt;span style=&#34;color:#66d9ef&#34;&gt;width&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;%&lt;/span&gt;;&lt;span style=&#34;color:#66d9ef&#34;&gt;max-width&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;960&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;px&lt;/span&gt;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&amp;ndash;watch&lt;/strong&gt;&lt;/em&gt;&lt;br&gt;
+watch 명령어는 scss 폴더의 파일이 변경될 때마다 .scss 파일을 컴파일하여 css 폴더의 .css 파일을 자동으로 업데이트한다.
+(파일명은 동일 /scss/style.scss → /css/style.css)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/project-name
+├ /css
+├ /scss
+├ /node-module
+├ package.json
+└ index.html
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;(참고) 프로젝트의 디렉토리 구조는 위와 같다.&lt;/p&gt;
+&lt;h2 id=&#34;vs-code-확장프로그램으로-컴파일&#34;&gt;VS Code 확장프로그램으로 컴파일&lt;/h2&gt;
+&lt;p&gt;비주얼 스튜디오 코드를 사용할 경우에는 보다 간단하게 컴파일할 수 있다.
+확장프로그램인 &lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass&#34;  target=&#34;_blank&#34; &gt;Live Sass Compiler&lt;/a&gt;를 설치 후
+&lt;em&gt;&lt;strong&gt;setting.json&lt;/strong&gt;&lt;/em&gt;에 아래와 같이 추가한다.
+이후 하단 상태 표시줄에 &lt;em&gt;&lt;strong&gt;Watch Sass&lt;/strong&gt;&lt;/em&gt; 버튼을 눌러 활성화해주면 된다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;liveSassCompile.settings.formats&amp;#34;&lt;/span&gt;: [
+        {
+            &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;format&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;compact&amp;#34;&lt;/span&gt;,
+            &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;extensionName&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.css&amp;#34;&lt;/span&gt;,
+            &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;savePath&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;~/../css&amp;#34;&lt;/span&gt;
+        },
+        {
+            &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;format&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;compressed&amp;#34;&lt;/span&gt;,
+            &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;extensionName&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.min.css&amp;#34;&lt;/span&gt;,
+            &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;savePath&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;~/../css&amp;#34;&lt;/span&gt;
+        }
+    ],
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;liveSassCompile.settings.generateMap&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;,
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;liveSassCompile.settings.includeItems&amp;#34;&lt;/span&gt;: [
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;./scss/*.scss&amp;#34;&lt;/span&gt;
+    ],
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 하나의 .scss 파일을 &lt;em&gt;&lt;strong&gt;compact&lt;/strong&gt;&lt;/em&gt;와 &lt;em&gt;&lt;strong&gt;compressed&lt;/strong&gt;&lt;/em&gt; 스타일로 각각 내보낼 수 있어 용이하다!&lt;/p&gt;
+&lt;h3 id=&#34;참고&#34;&gt;참고&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://sass-lang.com/documentation&#34;  target=&#34;_blank&#34; &gt;Sass: Documentation | 공식 사이트&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://sass-guidelin.es/ko/&#34;  target=&#34;_blank&#34; &gt;Sass Guidelines | 한국어 번역 페이지&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass&#34;  target=&#34;_blank&#34; &gt;Live Sass Compiler | VS Code 확장프로그램&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>[CSS] 박스 모델(Box-model)</title>
@@ -72,7 +198,7 @@
 &lt;li&gt;&lt;strong&gt;border-box&lt;/strong&gt;: width와 height 값이 padding, border, content를 합한 값으로 설정&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;번외-ie-박스-모델-버그&#34;&gt;번외) IE 박스 모델 버그&lt;/h2&gt;
+&lt;h3 id=&#34;번외-ie-박스-모델-버그&#34;&gt;번외) IE 박스 모델 버그&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&#34;https://haneunbi.github.io/img/css-box_model.svg&#34; alt=&#34;W3C와 Internet Explorer 박스 모델 간의 너비 해석 방식의 차이점&#34;&gt;
 [그림 2] W3C와 Internet Explorer 박스 모델 간의 너비 해석 방식의 차이점&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;p&gt;Internet Explorer의 초기 버전(&amp;lt;= IE6)은 &lt;a href=&#34;https://ko.wikipedia.org/wiki/%EC%BF%BC%ED%81%AC_%EB%AA%A8%EB%93%9C&#34;  title=&#34;위키 백과&#34;  target=&#34;_blank&#34; &gt;관용(쿼크) 모드&lt;/a&gt;일 때 박스 모델을 다르게 처리했다.
@@ -122,7 +248,7 @@ CSS background-image 속성을 사용하여 이미지를 넣는 경우도 상당
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;위와 같이 사이즈를 0으로 지정하는 방법 역시 스크린 리더가 읽을 수 없다.
 &lt;br&gt;&lt;br&gt;
 우리의 목표는 &lt;strong&gt;시각적으로 숨기지만 스크린 리더는 읽을 수 있어야&lt;/strong&gt; 하기 때문에 아래 방법으로 사용하자!&lt;/p&gt;
-&lt;h1 id=&#34;-so-so&#34;&gt;👌 SO-SO&lt;/h1&gt;
+&lt;h2 id=&#34;-so-so&#34;&gt;👌 SO-SO&lt;/h2&gt;
 &lt;h3 id=&#34;phark-method-기법&#34;&gt;Phark Method 기법&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;button&lt;/span&gt;&amp;gt;검색&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;button&lt;/span&gt;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;button&lt;/span&gt; {
@@ -145,7 +271,7 @@ CSS background-image 속성을 사용하여 이미지를 넣는 경우도 상당
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;추가 태그(span)를 사용하여 이미지 아래로 텍스트를 숨기는 기법이다.
 이 방법 역시 적용된 요소가 많을수록 position 속성에 따른 성능 저하 이슈가 있다.&lt;/p&gt;
-&lt;h1 id=&#34;-best&#34;&gt;👍 BEST&lt;/h1&gt;
+&lt;h2 id=&#34;-best&#34;&gt;👍 BEST&lt;/h2&gt;
 &lt;p&gt;마지막으로 &lt;a href=&#34;https://html5boilerplate.com/&#34;  target=&#34;_blank&#34; &gt;H5BP(HTML5 Boilerplate)&lt;/a&gt;나 &lt;a href=&#34;https://getbootstrap.com/docs/4.0/utilities/screenreaders/&#34;  target=&#34;_blank&#34; &gt;부트스트랩&lt;/a&gt;에서 사용중인 최신 방법이다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;sr-only&lt;/span&gt; {
     &lt;span style=&#34;color:#66d9ef&#34;&gt;position&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;absolute&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;/* position: absolute/fixed 에서만 clip 속성 작동 */&lt;/span&gt;
@@ -163,7 +289,7 @@ CSS background-image 속성을 사용하여 이미지를 넣는 경우도 상당
 &lt;p&gt;0 사이즈를 피하고자 width와 height를 1px을 준다.
 하지만 1px의 공간으로는 텍스트의 공백과 줄바꿈의 계산되지 않기 때문에 (공백은 1개만 표시하고 줄바꿈은 되지 않는) white-space: nowrap으로 정의한다.
 &lt;em&gt;(스크린 리더가 줄바꿈은 공백으로 해석하지 않아 띄어쓰기가 되지 않은 하나의 긴 단어처럼 읽어준다고 한다. &lt;a href=&#34;https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe&#34;  target=&#34;_blank&#34; &gt;관련 링크&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;참고&#34;&gt;참고&lt;/h2&gt;
+&lt;h3 id=&#34;참고&#34;&gt;참고&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://css-tricks.com/the-image-replacement-museum/&#34;  target=&#34;_blank&#34; &gt;The Image Replacement Museum | CSS-Tricks&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://nuli.navercorp.com/community/article/1132804?email=true&#34;  target=&#34;_blank&#34; &gt;스크린리더 사용자를 위한 IR(Image Replacement)기법과 추가 설명 제공하기 | 널리&lt;/a&gt;&lt;/li&gt;

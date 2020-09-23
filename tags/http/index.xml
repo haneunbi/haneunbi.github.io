@@ -17,9 +17,9 @@
       <pubDate>Fri, 31 Jul 2020 21:48:44 +0900</pubDate>
       
       <guid>https://haneunbi.github.io/2020/07/31/http-vs-https/</guid>
-      <description>&lt;h1 id=&#34;http&#34;&gt;HTTP&lt;/h1&gt;
+      <description>&lt;h2 id=&#34;http&#34;&gt;HTTP&lt;/h2&gt;
 &lt;p&gt;HTTP(HyperText Transfer Protocol)는 주로 HTML(HyperText Markup Language) 문서를 주고받는 데에 쓰이며, 클라이언트(웹 브라우저)와 서버 사이에 이루어지는 요청/응답(request/response) 프로토콜이다.&lt;/p&gt;
-&lt;h1 id=&#34;https&#34;&gt;HTTPS&lt;/h1&gt;
+&lt;h2 id=&#34;https&#34;&gt;HTTPS&lt;/h2&gt;
 &lt;p&gt;HTTPS(Hypertext Transfer Protocol &lt;strong&gt;Secure&lt;/strong&gt;)는 HTTP의 보안 취약점을 해결하기 위한 프로토콜로 &lt;strong&gt;데이터를 암호화된 방식으로 주고받는 통신 규약&lt;/strong&gt;을 말한다.
 &lt;a href=&#34;https://ko.wikipedia.org/wiki/%EC%A0%84%EC%86%A1_%EA%B3%84%EC%B8%B5_%EB%B3%B4%EC%95%88&#34;  title=&#34;위키백과&#34;  target=&#34;_blank&#34; &gt;SSL(Secure Sockets Layer, 보안 소켓 계층)과 TLS(Transport Layer Security, 전송 계층 보안)&lt;/a&gt;을 사용하여 보안 취약점을 해결한다.
 또한 검색엔진 최적화(SEO)에 있어서도 구글은 HTTPS 웹 사이트에 가산점을 준다.&lt;/p&gt;
@@ -100,7 +100,7 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h1 id=&#34;왜-알아야-할까&#34;&gt;왜 알아야 할까?&lt;/h1&gt;
+&lt;h2 id=&#34;왜-알아야-할까&#34;&gt;왜 알아야 할까?&lt;/h2&gt;
 &lt;p&gt;HTTPS 페이지에서 HTTP 프로토콜을 사용하여 리소스(이미지, 동영상, 스타일시트 등)를 요청할 경우 &lt;a href=&#34;https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content?hl=ko&#34;  title=&#34;Google Developers&#34;  target=&#34;_blank&#34; &gt;혼합 콘텐츠&lt;/a&gt;가 발생하는데 콘솔에 아래와 같이 &amp;lsquo;보안되지 않은 리소스가 포함되어 있음&#39;을 사용자에게 경고해준다.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Mixed Content: The page at &#39;https://URL&#39; was loaded over HTTPS, 
 but requested an insecure resource &#39;http://resource-URL&#39;. 
@@ -113,7 +113,7 @@ This request has been blocked; the content must be served over HTTPS.
 &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;img&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;//URL&amp;#34;&lt;/span&gt;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;@&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;url&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(//&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;fonts&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;googleapis&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;com&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;earlyaccess&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;kopubbatang&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;css&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 참고로 Google Fonts &lt;a href=&#34;https://fonts.google.com/earlyaccess#KoPub&amp;#43;Batang&#34;  target=&#34;_blank&#34; &gt;Early Access&lt;/a&gt;에서 폰트 경로를 봐도 프로토콜을 제외한 후 작성되어 있는 것을 확인해볼 수 있다.&lt;/p&gt;
-&lt;h2 id=&#34;참고&#34;&gt;참고&lt;/h2&gt;
+&lt;h3 id=&#34;참고&#34;&gt;참고&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://ko.wikipedia.org/wiki/%EC%A0%84%EC%86%A1_%EA%B3%84%EC%B8%B5_%EB%B3%B4%EC%95%88&#34;  target=&#34;_blank&#34; &gt;전송 계층 보안 | 위키백과&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/ko/docs/Web/HTTP/Status&#34;  target=&#34;_blank&#34; &gt;HTTP 상태 코드 | MDN&lt;/a&gt;&lt;/li&gt;

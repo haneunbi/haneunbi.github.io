@@ -17,7 +17,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://haneunbi.github.io/2020/06/16/vanilla-js/" />
 <meta property="article:published_time" content="2020-06-16T20:25:10+09:00" />
-<meta property="article:modified_time" content="2020-07-01T11:07:20+09:00" />
+<meta property="article:modified_time" content="2020-09-22T16:34:40+09:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[JavaScript] Vanilla JS"/>
@@ -31,10 +31,10 @@
 <link rel="apple-touch-icon" href="https://haneunbi.github.io/favicon.png">
 
 <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
-<script src="https://haneunbi.github.io/js/custom.js?rnd=1597920442"></script>
+<script src="https://haneunbi.github.io/js/custom.js?rnd=1600858135"></script>
 
-<link rel="stylesheet" href="https://haneunbi.github.io/css/style.css?rnd=1597920442">
-<link rel="stylesheet" href="https://haneunbi.github.io/css/custom.css?rnd=1597920442">
+<link rel="stylesheet" href="https://haneunbi.github.io/css/style.css?rnd=1600858135">
+<link rel="stylesheet" href="https://haneunbi.github.io/css/custom.css?rnd=1600858135">
 
 
     
@@ -97,7 +97,7 @@ id고 class고 tag name을 가리지 않는 만능 선택자 $()를 두고 길�
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;.list li&#39;</span>); <span style="color:#75715e">// 후손 선택자
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;.list&#39;</span>).<span style="color:#a6e22e">find</span>(<span style="color:#e6db74">&#39;li&#39;</span>) <span style="color:#75715e">// Traversing
 </span></code></pre></div><p>▲ 후손 선택자보다 Traversing 방식이 빠르다.</p>
-<h1 id="이벤트dom-리소스-로드-관련">이벤트(DOM, 리소스 로드 관련)</h1>
+<h2 id="이벤트dom-리소스-로드-관련">이벤트(DOM, 리소스 로드 관련)</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// jQuery
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(document).<span style="color:#a6e22e">ready</span>(<span style="color:#66d9ef">function</span>(){ <span style="color:#75715e">// = $(function(){
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// 실행 코드
@@ -122,7 +122,7 @@ JavaScript의 .addEventListener()는 IE9 이상에서만 작동하는 점을 유
 <blockquote>
 <p>document.ready() &gt; window.load() &gt; body onload 순서로 실행된다.</p>
 </blockquote>
-<h1 id="dom-선택자selector">DOM 선택자(Selector)</h1>
+<h2 id="dom-선택자selector">DOM 선택자(Selector)</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// jQuery
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;#id&#39;</span>); <span style="color:#75715e">// id 선택자
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;.class&#39;</span>); <span style="color:#75715e">// class 선택자
@@ -145,8 +145,8 @@ jQuery처럼 이벤트를 걸면 동작하지 않는 경우가 있다. <em>(이 
 <blockquote>
 <p>.getElementById()가 .querySelector()보다 빠르다.</p>
 </blockquote>
-<h1 id="메소드">메소드</h1>
-<h2 id="addclass-removeclass-toggleclass-hasclass">.addClass(), removeClass(), toggleClass(), hasClass()</h2>
+<h2 id="메소드">메소드</h2>
+<h3 id="addclass-removeclass-toggleclass-hasclass">.addClass(), removeClass(), toggleClass(), hasClass()</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// jQuery
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$target</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;#test&#39;</span>);
 
@@ -177,7 +177,7 @@ jQuery처럼 이벤트를 걸면 동작하지 않는 경우가 있다. <em>(이 
 &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;active&#34;</span>&gt;class 하나&lt;<span style="color:#f92672">div</span>&gt;
 </code></pre></div><p>▲ class가 여러개 지정된 상태 중 active를 찾아야 하면, <strong>.classList.contains()</strong><br>
 class가 하나만 지정된 상태라면 <strong>.className</strong> 사용 가능</p>
-<h2 id="append">.append()</h2>
+<h3 id="append">.append()</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// jQuery
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$target</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;#test&#39;</span>);
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;span&gt; (Add Element)&lt;/span&gt;&#39;</span>;
@@ -190,7 +190,7 @@ class가 하나만 지정된 상태라면 <strong>.className</strong> 사용 가
 
 <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; (Add Element)&#39;</span>;
 <span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">appendChild</span>( <span style="color:#a6e22e">element</span> );
-</code></pre></div><h1 id="스타일">스타일</h1>
+</code></pre></div><h2 id="스타일">스타일</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// jQuery
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$target</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;#test&#39;</span>);
 <span style="color:#a6e22e">$target</span>.<span style="color:#a6e22e">css</span>(<span style="color:#e6db74">&#39;color&#39;</span>, <span style="color:#e6db74">&#39;green&#39;</span>);
@@ -198,10 +198,10 @@ class가 하나만 지정된 상태라면 <strong>.className</strong> 사용 가
 <span style="color:#75715e">// JavaScript
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">target</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#test&#39;</span>); <span style="color:#75715e">// IE8+
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">color</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;green&#39;</span>;
-</code></pre></div><h1 id="정리">정리</h1>
+</code></pre></div><h2 id="정리">정리</h2>
 <p>jQuery 의존도를 낮춰주는 .querySelector(), .addEventListener(), .classList 등을 모두 사용하기 위해서는 IE10 이상이어야 한다.
 신규 프로젝트는 괜찮지만 하위 브라우저까지 지원해야 하는 기존 프로젝트에는 적용이 어렵다. 당장은 jQuery 못잃어..😭</p>
-<h2 id="참고">참고</h2>
+<h3 id="참고">참고</h3>
 <ul>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/API/EventTarget/addEventListener"  target="_blank" >EventTarget.addEventListener() | MDN</a></li>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/API/Document/getElementById"  target="_blank" >Document.getElementById() | MDN</a></li>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    
+    
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>[SCSS] SCSS to CSS Compile - B.log</title>
+<meta name="description" content="Today I Learned">
+
+<meta property="og:title" content="[SCSS] SCSS to CSS Compile" />
+<meta property="og:description" content="node-sass를 이용하여 Sass(SCSS)를 CSS로 컴파일하는 방법" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://haneunbi.github.io/2020/09/23/scss-to-css/" />
+<meta property="article:published_time" content="2020-09-23T19:38:55+09:00" />
+<meta property="article:modified_time" content="2020-09-23T19:47:18+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[SCSS] SCSS to CSS Compile"/>
+<meta name="twitter:description" content="node-sass를 이용하여 Sass(SCSS)를 CSS로 컴파일하는 방법"/>
+
+
+<link rel="canonical" href="https://haneunbi.github.io/">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://haneunbi.github.io/rss/">
+
+<link rel="icon" type="image/png" href="https://haneunbi.github.io/favicon.png">
+<link rel="apple-touch-icon" href="https://haneunbi.github.io/favicon.png">
+
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+<script src="https://haneunbi.github.io/js/custom.js?rnd=1600858135"></script>
+
+<link rel="stylesheet" href="https://haneunbi.github.io/css/style.css?rnd=1600858135">
+<link rel="stylesheet" href="https://haneunbi.github.io/css/custom.css?rnd=1600858135">
+
+
+    
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            
+            <h1 class="site-header">
+    <a href="https://haneunbi.github.io/">B.log</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/about/" title="">About</a>
+    
+    <a class="" href="/posts/" title="">Posts</a>
+    
+    <a class="" href="/tags/" title="">Tags</a>
+    
+</nav>
+
+            
+        </header>
+        <main>
+            
+
+<article class="post">
+    <header>
+        <h1>[SCSS] SCSS to CSS Compile</h1>
+    </header>
+    <div class="content">
+        <p>CSS를 다룰 줄 아는 사람에게 SCSS 작성 자체는 크게 어렵지 않다.
+하지만 마크업 개발자(웹퍼블리셔)의 경우 문서를 컴파일(트랜스파일링)할 경우가 많지 않기 때문에
+이 과정이 낯선 경우가 있어 정리하고자 한다.</p>
+<h2 id="clicommand-line-interface로-컴파일">CLI(Command Line Interface)로 컴파일</h2>
+<h3 id="1-nodejshttpsnodejsorgko를-설치한다-자동으로-npmhttpswwwnpmjscom이-함께-설치된다">1. <a href="https://nodejs.org/ko/"  target="_blank" >Node.js</a>를 설치한다. (자동으로 <a href="https://www.npmjs.com/"  target="_blank" >npm</a>이 함께 설치된다.)</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ node -v
+v8.12.0
+$ npm -v
+6.4.1
+</code></pre></div><p>▲ Node.js와 npm의 버전을 출력하여 설치 여부를 확인할 수 있다.</p>
+<h3 id="2-node-sass를-설치한다">2. node-sass를 설치한다.</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ npm install -g node-sass
+$ node-sass -v
+node-sass       4.14.1  <span style="color:#f92672">(</span>Wrapper<span style="color:#f92672">)</span>       <span style="color:#f92672">[</span>JavaScript<span style="color:#f92672">]</span>
+libsass         3.5.5   <span style="color:#f92672">(</span>Sass Compiler<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>C/C++<span style="color:#f92672">]</span>
+</code></pre></div><p>▲ 전역으로 node-sass를 설치하고 버전 확인</p>
+<h3 id="3-프로젝트-루트에서-npm-init-명령어를-실행한다-생략-가능">3. 프로젝트 루트에서 npm init 명령어를 실행한다. (생략 가능)</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ npm init -y
+</code></pre></div><p>▲ 기본 설정값(-y/&ndash;yes)으로 <em><strong>package.json</strong></em>이 생성된다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;dependencies&#34;</span>: {
+    <span style="color:#f92672">&#34;node-sass&#34;</span>: <span style="color:#e6db74">&#34;4.14.1&#34;</span>
+  },
+  <span style="color:#f92672">&#34;scripts&#34;</span>: {
+    <span style="color:#f92672">&#34;scss&#34;</span>: <span style="color:#e6db74">&#34;node-sass --output-style compact --watch scss --output css&#34;</span>
+  }
+}
+</code></pre></div><p>▲ <em><strong>package.json</strong></em> 문서 내 <em><strong>scripts</strong></em>를 추가한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ npm run scss
+</code></pre></div><p>▲ 콘솔창에 <em><strong>npm run scss</strong></em>를 입력하면 scss 폴더에 있는 파일이 컴파일되어 css 폴더에 생성된다.</p>
+<blockquote>
+<p><em><strong>package.json</strong></em> 문서를 생성하여 스크립트를 추가하지 않고
+콘솔창에 직접 <em><strong>node-sass &ndash;output-style compact &ndash;watch scss &ndash;output css</strong></em>를 써도 무관하다. (단지 매번 번거로울 뿐..)</p>
+</blockquote>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ node-sass --output-style compact --watch scss --output css
+</code></pre></div><p>▲ 위 명령어에 대한 부연설명을 덧붙이자면,</p>
+<br>
+<p><em><strong>&ndash;output-style</strong></em><br>
+css 스타일에 대한 것으로 아래 4가지 중 하나를 선택한다.</p>
+<ul>
+<li><strong>nested</strong> : (기본값) 마지막 중괄호를 줄바꿈하지 않는 스타일
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">body</span> {
+  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#333</span>;
+  <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">16</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">font-family</span>: Arial, <span style="color:#66d9ef">sans-serif</span>;
+  <span style="color:#66d9ef">line-height</span>: <span style="color:#ae81ff">125</span><span style="color:#66d9ef">%</span>; }
+
+.<span style="color:#a6e22e">content</span> {
+  <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">auto</span>;
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+  <span style="color:#66d9ef">max-width</span>: <span style="color:#ae81ff">960</span><span style="color:#66d9ef">px</span>; }
+</code></pre></div></li>
+<li><strong>expanded</strong> : 표준 CSS 스타일
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">body</span> {
+  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#333</span>;
+  <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">16</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">font-family</span>: Arial, <span style="color:#66d9ef">sans-serif</span>;
+  <span style="color:#66d9ef">line-height</span>: <span style="color:#ae81ff">125</span><span style="color:#66d9ef">%</span>;
+}
+
+.<span style="color:#a6e22e">content</span> {
+  <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">auto</span>;
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+  <span style="color:#66d9ef">max-width</span>: <span style="color:#ae81ff">964</span><span style="color:#66d9ef">px</span>;
+}
+</code></pre></div></li>
+<li><strong>compact</strong> : 각 선택자는 줄바꿈으로 구분하고 속성은 공백으로 구분하는 스타일
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">body</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#333</span>; <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">16</span><span style="color:#66d9ef">px</span>; <span style="color:#66d9ef">font-family</span>: Arial, <span style="color:#66d9ef">sans-serif</span>; <span style="color:#66d9ef">line-height</span>: <span style="color:#ae81ff">125</span><span style="color:#66d9ef">%</span>; }
+
+.<span style="color:#a6e22e">content</span> { <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">auto</span>; <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>; <span style="color:#66d9ef">max-width</span>: <span style="color:#ae81ff">960</span><span style="color:#66d9ef">px</span>; }
+</code></pre></div></li>
+<li><strong>compressed</strong> : 공백이 없는 압축된 스타일(style.min.css)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">body</span>{<span style="color:#66d9ef">color</span>:<span style="color:#ae81ff">#333</span>;<span style="color:#66d9ef">font-size</span>:<span style="color:#ae81ff">16</span><span style="color:#66d9ef">px</span>;<span style="color:#66d9ef">font-family</span>:Arial,<span style="color:#66d9ef">sans-serif</span>;<span style="color:#66d9ef">line-height</span>:<span style="color:#ae81ff">125</span><span style="color:#66d9ef">%</span>}.<span style="color:#a6e22e">content</span>{<span style="color:#66d9ef">margin</span>:<span style="color:#ae81ff">0</span> <span style="color:#66d9ef">auto</span>;<span style="color:#66d9ef">width</span>:<span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;<span style="color:#66d9ef">max-width</span>:<span style="color:#ae81ff">960</span><span style="color:#66d9ef">px</span>}
+</code></pre></div></li>
+</ul>
+<br>
+<p><em><strong>&ndash;watch</strong></em><br>
+watch 명령어는 scss 폴더의 파일이 변경될 때마다 .scss 파일을 컴파일하여 css 폴더의 .css 파일을 자동으로 업데이트한다.
+(파일명은 동일 /scss/style.scss → /css/style.css)</p>
+<pre><code>/project-name
+├ /css
+├ /scss
+├ /node-module
+├ package.json
+└ index.html
+</code></pre><p>(참고) 프로젝트의 디렉토리 구조는 위와 같다.</p>
+<h2 id="vs-code-확장프로그램으로-컴파일">VS Code 확장프로그램으로 컴파일</h2>
+<p>비주얼 스튜디오 코드를 사용할 경우에는 보다 간단하게 컴파일할 수 있다.
+확장프로그램인 <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass"  target="_blank" >Live Sass Compiler</a>를 설치 후
+<em><strong>setting.json</strong></em>에 아래와 같이 추가한다.
+이후 하단 상태 표시줄에 <em><strong>Watch Sass</strong></em> 버튼을 눌러 활성화해주면 된다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;liveSassCompile.settings.formats&#34;</span>: [
+        {
+            <span style="color:#f92672">&#34;format&#34;</span>: <span style="color:#e6db74">&#34;compact&#34;</span>,
+            <span style="color:#f92672">&#34;extensionName&#34;</span>: <span style="color:#e6db74">&#34;.css&#34;</span>,
+            <span style="color:#f92672">&#34;savePath&#34;</span>: <span style="color:#e6db74">&#34;~/../css&#34;</span>
+        },
+        {
+            <span style="color:#f92672">&#34;format&#34;</span>: <span style="color:#e6db74">&#34;compressed&#34;</span>,
+            <span style="color:#f92672">&#34;extensionName&#34;</span>: <span style="color:#e6db74">&#34;.min.css&#34;</span>,
+            <span style="color:#f92672">&#34;savePath&#34;</span>: <span style="color:#e6db74">&#34;~/../css&#34;</span>
+        }
+    ],
+    <span style="color:#f92672">&#34;liveSassCompile.settings.generateMap&#34;</span>: <span style="color:#66d9ef">false</span>,
+    <span style="color:#f92672">&#34;liveSassCompile.settings.includeItems&#34;</span>: [
+        <span style="color:#e6db74">&#34;./scss/*.scss&#34;</span>
+    ],
+}
+</code></pre></div><p>▲ 하나의 .scss 파일을 <em><strong>compact</strong></em>와 <em><strong>compressed</strong></em> 스타일로 각각 내보낼 수 있어 용이하다!</p>
+<h3 id="참고">참고</h3>
+<ul>
+<li><a href="https://sass-lang.com/documentation"  target="_blank" >Sass: Documentation | 공식 사이트</a></li>
+<li><a href="https://sass-guidelin.es/ko/"  target="_blank" >Sass Guidelines | 한국어 번역 페이지</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass"  target="_blank" >Live Sass Compiler | VS Code 확장프로그램</a></li>
+</ul>
+
+    </div>
+    <div class="article-info">
+    
+    <div class="article-date">2020.09.23</div>
+    
+    <div class="article-taxonomies">
+        
+        
+        <ul class="article-tags">
+            
+            <li><a href="https://haneunbi.github.io/tags/scss">#scss</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/css">#css</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/preprocessor">#preprocessor</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/til">#TIL</a></li>
+            
+        </ul>
+        
+    </div>
+</div>
+    
+<footer>
+    <script src="https://utteranc.es/client.js"
+        repo="haneunbi/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script>
+</footer>
+
+</article>
+
+
+        </main>
+        <footer>
+            
+            <p>© B, 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+
+</html>

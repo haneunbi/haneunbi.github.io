@@ -15,16 +15,19 @@ article header h1{margin-top:2em}
 footer{font-size:13px;text-align:right}
 .article-categories a{color:#333}
 .article-tags a{color:#1d60a3}
+.post .content h2{font-size:1.3em}
+.post .content h3{font-size:1.2em}
+.post .content h4{font-size:1.1em}
 .post .content h1::before,
 .post .content h2::before,
 .post .content h3::before,
 .post .content h4::before,
 .post .content h5::before,
 .post .content h6::before{content:'#';margin-right:2px;font-weight:normal}
-.post .content h1::before{color:#42b983}
-.post .content h2::before{color:#fcbc0e}
-.post .content h3::before{color:#999}
-.post .content h4::before,
+.post .content h1::before,
+.post .content h2::before{color:#42b983}
+.post .content h3::before{color:#fcbc0e}
+.post .content h4::before{color:#999}
 .post .content h5::before,
 .post .content h6::before{color:#bbb}
 .post .content table{font-size:0.85em}

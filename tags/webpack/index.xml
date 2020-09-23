@@ -17,8 +17,7 @@
       <pubDate>Mon, 03 Aug 2020 21:18:03 +0900</pubDate>
       
       <guid>https://haneunbi.github.io/2020/08/03/webpack/</guid>
-      <description>&lt;h1 id=&#34;webpack이란&#34;&gt;Webpack이란?&lt;/h1&gt;
-&lt;p&gt;Webpack은 의존 관계에 있는 모듈들을 하나의 파일로 번들링하는 모듈 번들러(Module Bundler)이다.&lt;/p&gt;
+      <description>&lt;p&gt;Webpack은 의존 관계에 있는 모듈들을 하나의 파일로 번들링하는 모듈 번들러(Module Bundler)이다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Webpack 설치&lt;/span&gt;
 $ npm install --save-dev webpack webpack-cli
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 번들링 환경은 로컬로 설치한다.&lt;/p&gt;
@@ -133,7 +132,7 @@ $ npm install --save-dev mini-css-extract-plugin
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
   &lt;span style=&#34;color:#a6e22e&#34;&gt;mode&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;development&amp;#39;&lt;/span&gt;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;참고&#34;&gt;참고&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;참고&#34;&gt;참고&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://v4.webpack.js.org/concepts/&#34;  target=&#34;_blank&#34; &gt;Concepts | webpack&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Modules&#34;  target=&#34;_blank&#34; &gt;JavaScript modules | MDN&lt;/a&gt;&lt;/li&gt;

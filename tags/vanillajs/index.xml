@@ -46,7 +46,7 @@ id고 class고 tag name을 가리지 않는 만능 선택자 $()를 두고 길�
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;.list li&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// 후손 선택자
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;.list&amp;#39;&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;find&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#75715e&#34;&gt;// Traversing
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 후손 선택자보다 Traversing 방식이 빠르다.&lt;/p&gt;
-&lt;h1 id=&#34;이벤트dom-리소스-로드-관련&#34;&gt;이벤트(DOM, 리소스 로드 관련)&lt;/h1&gt;
+&lt;h2 id=&#34;이벤트dom-리소스-로드-관련&#34;&gt;이벤트(DOM, 리소스 로드 관련)&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// jQuery
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(document).&lt;span style=&#34;color:#a6e22e&#34;&gt;ready&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){ &lt;span style=&#34;color:#75715e&#34;&gt;// = $(function(){
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// 실행 코드
@@ -71,7 +71,7 @@ JavaScript의 .addEventListener()는 IE9 이상에서만 작동하는 점을 유
 &lt;blockquote&gt;
 &lt;p&gt;document.ready() &amp;gt; window.load() &amp;gt; body onload 순서로 실행된다.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1 id=&#34;dom-선택자selector&#34;&gt;DOM 선택자(Selector)&lt;/h1&gt;
+&lt;h2 id=&#34;dom-선택자selector&#34;&gt;DOM 선택자(Selector)&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// jQuery
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#id&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// id 선택자
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;.class&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// class 선택자
@@ -94,8 +94,8 @@ jQuery처럼 이벤트를 걸면 동작하지 않는 경우가 있다. &lt;em&gt
 &lt;blockquote&gt;
 &lt;p&gt;.getElementById()가 .querySelector()보다 빠르다.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1 id=&#34;메소드&#34;&gt;메소드&lt;/h1&gt;
-&lt;h2 id=&#34;addclass-removeclass-toggleclass-hasclass&#34;&gt;.addClass(), removeClass(), toggleClass(), hasClass()&lt;/h2&gt;
+&lt;h2 id=&#34;메소드&#34;&gt;메소드&lt;/h2&gt;
+&lt;h3 id=&#34;addclass-removeclass-toggleclass-hasclass&#34;&gt;.addClass(), removeClass(), toggleClass(), hasClass()&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// jQuery
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;$target&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#test&amp;#39;&lt;/span&gt;);
 
@@ -126,7 +126,7 @@ jQuery처럼 이벤트를 걸면 동작하지 않는 경우가 있다. &lt;em&gt
 &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;active&amp;#34;&lt;/span&gt;&amp;gt;class 하나&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ class가 여러개 지정된 상태 중 active를 찾아야 하면, &lt;strong&gt;.classList.contains()&lt;/strong&gt;&lt;br&gt;
 class가 하나만 지정된 상태라면 &lt;strong&gt;.className&lt;/strong&gt; 사용 가능&lt;/p&gt;
-&lt;h2 id=&#34;append&#34;&gt;.append()&lt;/h2&gt;
+&lt;h3 id=&#34;append&#34;&gt;.append()&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// jQuery
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;$target&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#test&amp;#39;&lt;/span&gt;);
 &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;element&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;lt;span&amp;gt; (Add Element)&amp;lt;/span&amp;gt;&amp;#39;&lt;/span&gt;;
@@ -139,7 +139,7 @@ class가 하나만 지정된 상태라면 &lt;strong&gt;.className&lt;/strong&gt
 
 &lt;span style=&#34;color:#a6e22e&#34;&gt;element&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;innerHTML&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; (Add Element)&amp;#39;&lt;/span&gt;;
 &lt;span style=&#34;color:#a6e22e&#34;&gt;target&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;appendChild&lt;/span&gt;( &lt;span style=&#34;color:#a6e22e&#34;&gt;element&lt;/span&gt; );
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;스타일&#34;&gt;스타일&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;스타일&#34;&gt;스타일&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// jQuery
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;$target&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#test&amp;#39;&lt;/span&gt;);
 &lt;span style=&#34;color:#a6e22e&#34;&gt;$target&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;css&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;color&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;green&amp;#39;&lt;/span&gt;);
@@ -147,10 +147,10 @@ class가 하나만 지정된 상태라면 &lt;strong&gt;.className&lt;/strong&gt
 &lt;span style=&#34;color:#75715e&#34;&gt;// JavaScript
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;target&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; document.&lt;span style=&#34;color:#a6e22e&#34;&gt;querySelector&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#test&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// IE8+
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;target&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;style&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;color&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;green&amp;#39;&lt;/span&gt;;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;정리&#34;&gt;정리&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
 &lt;p&gt;jQuery 의존도를 낮춰주는 .querySelector(), .addEventListener(), .classList 등을 모두 사용하기 위해서는 IE10 이상이어야 한다.
 신규 프로젝트는 괜찮지만 하위 브라우저까지 지원해야 하는 기존 프로젝트에는 적용이 어렵다. 당장은 jQuery 못잃어..😭&lt;/p&gt;
-&lt;h2 id=&#34;참고&#34;&gt;참고&lt;/h2&gt;
+&lt;h3 id=&#34;참고&#34;&gt;참고&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/ko/docs/Web/API/EventTarget/addEventListener&#34;  target=&#34;_blank&#34; &gt;EventTarget.addEventListener() | MDN&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/ko/docs/Web/API/Document/getElementById&#34;  target=&#34;_blank&#34; &gt;Document.getElementById() | MDN&lt;/a&gt;&lt;/li&gt;
