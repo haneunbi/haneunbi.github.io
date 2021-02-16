@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    
+    
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>[JavaScript] 클로저(Closure)란 무엇인가? - B.log</title>
+<meta name="description" content="Today I Learned">
+
+<meta property="og:title" content="[JavaScript] 클로저(Closure)란 무엇인가?" />
+<meta property="og:description" content="봐도봐도 갸우뚱한 클로저 제대로 이해하기" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://haneunbi.github.io/2021/02/16/2021-02-16-closure/" />
+<meta property="article:published_time" content="2021-02-16T19:57:01+09:00" />
+<meta property="article:modified_time" content="2021-02-16T20:22:25+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[JavaScript] 클로저(Closure)란 무엇인가?"/>
+<meta name="twitter:description" content="봐도봐도 갸우뚱한 클로저 제대로 이해하기"/>
+
+
+<link rel="canonical" href="https://haneunbi.github.io/">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://haneunbi.github.io/rss/">
+
+<link rel="icon" type="image/png" href="https://haneunbi.github.io/favicon.png">
+<link rel="apple-touch-icon" href="https://haneunbi.github.io/favicon.png">
+
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+<script src="https://haneunbi.github.io/js/custom.js?rnd=1613475089"></script>
+
+<link rel="stylesheet" href="https://haneunbi.github.io/css/style.css?rnd=1613475089">
+<link rel="stylesheet" href="https://haneunbi.github.io/css/custom.css?rnd=1613475089">
+
+
+    
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            
+            <h1 class="site-header">
+    <a href="https://haneunbi.github.io/">B.log</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/about/" title="">About</a>
+    
+    <a class="" href="/posts/" title="">Posts</a>
+    
+    <a class="" href="/tags/" title="">Tags</a>
+    
+</nav>
+
+            
+        </header>
+        <main>
+            
+
+<article class="post">
+    <header>
+        <h1>[JavaScript] 클로저(Closure)란 무엇인가?</h1>
+    </header>
+    <div class="content">
+        <p>지금까지 클로저의 개념에 대해 몇번을 봤는지 모르겠다.<br>
+그때마다 정확히 이해했다기 보다는 대충 감만 잡는 느낌이었는데 오늘은 기필코 이해해 보려 한다!</p>
+<h2 id="클로저closure의-정의">클로저(Closure)의 정의</h2>
+<blockquote>
+<p>클로저는 함수와 함수가 선언된 렉시컬 환경(Lexical environment)의 조합이다. <em>- MDN</em></p>
+</blockquote>
+<p>당최 무슨 말인가.. 😑</p>
+<p>Closure의 사전적 정의는 <strong>폐쇄</strong>다.<br>
+클로저를 찾아 보면 렉시컬 환경(Lexical environment), 렉시컬 스코프(Lexical scope)란 말이 자주 등장하는데
+클로저를 이해하기 전에 먼저 렉시컬 스코프에 대해 살펴보자.</p>
+<h3 id="렉시컬-스코프lexical-scope">렉시컬 스코프(Lexical scope)</h3>
+<p>전역 스코프(Global scope)와 지역 스코프(Local scope)는 알겠는데,
+렉시컬 스코프(Lexical scope)란 무엇이더냐..</p>
+<p>우리가 변수나 함수를 <strong>어디에 선언</strong>하는 지에 따라 전역 스코프와 지역 스코프가 결정되는데,
+이렇게 구성된 스코프를 <strong>렉시컬 스코프</strong>라고 한다. <em>= 정적 스코프(Static scope)</em></p>
+<p>함수를 선언할 때 함수 내부의 변수는 <strong>자기 스코프로부터 가장 가까운 상위 변수를 계속 참조</strong>하게 된다.<br>
+아래 예제를 보자.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo</span>() {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+  <span style="color:#a6e22e">bar</span>(); <span style="color:#75715e">// foo 함수 내부에서 bar 함수 호출
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">bar</span>() {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">x</span>);
+}
+
+<span style="color:#a6e22e">foo</span>(); <span style="color:#75715e">// 5 (10 아님)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">bar</span>(); <span style="color:#75715e">// 5
+</span></code></pre></div><p>▲ foo 함수 내부에서 bar 함수를 호출했지만 bar 함수가 <strong>선언</strong>된 <strong>전역</strong>에서 변수(x)를 찾아 출력한다.<br>
+즉, 렉시컬 스코프는 함수를 어디서 호출하는지가 아니라 <strong>어디에 선언</strong>하였는지에 따라 결정된다.</p>
+<p>이렇듯 렉시컬 스코프는 특별한 개념이 아니라 우리가 당연하다 생각하며 개발한 것이다.<br>
+그럼 다시 클로저로 돌아와 아래 예제를 살펴보자.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">outer</span>() {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+    
+    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">inner</span>() {
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">x</span>); <span style="color:#75715e">// 자신의 스코프 내 x가 없기 때문에 상위 스코프에서 x를 찾아 출력한다.
+</span><span style="color:#75715e"></span>    };
+
+    <span style="color:#a6e22e">inner</span>();
+}
+
+<span style="color:#a6e22e">outer</span>(); <span style="color:#75715e">// 10
+</span></code></pre></div><p>▲ inner 함수는 <strong>outer 함수 안에서 선언되고 호출</strong>된다.</p>
+<p>간단한 위의 예제를 아래처럼 바꿔보자.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">outer</span>() {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+    
+    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">inner</span>() {
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">x</span>);
+    };
+
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">inner</span>;
+}
+
+<span style="color:#a6e22e">outer</span>(); <span style="color:#75715e">// ƒ inner() { console.log(x); }
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">closure</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">outer</span>();
+<span style="color:#a6e22e">closure</span>(); <span style="color:#75715e">// 10
+</span></code></pre></div><p>▲ closure 함수가 참조하고 있는 outer 함수를 호출해보면 <strong>inner 함수 자체를 반환</strong>하는 것을 볼 수 있다.<br>
+<em>(이것만 보면 outer 함수의 지역 변수인 x=10은 쓸모가 없어 보인다.)</em>
+그럼 전역 스코프에서 호출된 closure 함수는 전역 변수의 x를 찾아 5를 출력할 것 같은데, 지역 변수인 10을 출력한다(?!)</p>
+<p>부모 함수에서 내부 함수를 외부로 리턴하면, 부모 함수 밖에서도 내부 함수를 호출하는 것이 가능하다.</p>
+<blockquote>
+<p>즉, 클로저란 함수 내부에 <strong>선언</strong>된 함수가 <strong>호출</strong>될 때 외부 변수에 접근하기 위한 객체이다.</p>
+</blockquote>
+<h2 id="그래서-클로저는-어디에-쓰일까">그래서 클로저는 어디에 쓰일까?</h2>
+<blockquote>
+<p>클로저를 사용하면 객체지향 프로그래밍의 <strong>캡슐화</strong><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>와 <strong>정보 은닉</strong><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>같은 이점을 얻을 수 있다.</p>
+</blockquote>
+<p>이 말도 나에겐 너무나 추상적인 말이다..<br>
+사실 이 클로저의 활용 부분이 명확하지 않아 지금까지 클로저를 제대로 이해하지 못했다.</p>
+<h3 id="전역-변수를-피하자">전역 변수를 피하자!</h3>
+<p>초보 개발자도 전역 변수의 사용을 자제하라는 말은 많이 들어봤을 것이다.</p>
+<p>변하지 않고 항상 같은 값을 가지는 상수(const)는 괜찮지만 비-상수(non-const)는 전역 변수를 피해야 한다.
+전역 변수는 언제 어디서 누구나 접근할 수 있고 값이 변경될 위험이 있기 때문이다.</p>
+<p>여기서 클로저를 사용하면 된다. (=정보 은닉)</p>
+<h4 id="지역-변수를-사용한-카운터-x">지역 변수를 사용한 카운터 (X)</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">counter</span>() {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>( <span style="color:#f92672">++</span><span style="color:#a6e22e">count</span> );
+}
+
+<span style="color:#a6e22e">counter</span>(); <span style="color:#75715e">// 실행 시마다 count 변수가 초기화되어 언제나 1이 출력된다.
+</span></code></pre></div><h4 id="전역-변수를-사용한-카운터-">전역 변수를 사용한 카운터 (△)</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">counter</span>() {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>( <span style="color:#f92672">++</span><span style="color:#a6e22e">count</span> );
+}
+
+<span style="color:#a6e22e">counter</span>(); <span style="color:#75715e">// 실행 시마다 1씩 증가한다. 전역 변수의 오염 위험
+</span></code></pre></div><h4 id="클로저를-사용한-카운터-o">클로저를 사용한 카운터 (O)</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">counter</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">function</span>() {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span>() { <span style="color:#75715e">// 클로저 함수
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>( <span style="color:#f92672">++</span><span style="color:#a6e22e">count</span> );
+    }
+})();
+
+<span style="color:#a6e22e">counter</span>(); <span style="color:#75715e">// count 변수의 오염 걱정없이 1씩 증가한다.
+</span></code></pre></div><p>▲ 클로저를 이용하면 지역 변수인 count가 0으로 초기화되지 않고 유지됨을 볼 수 있다.</p>
+<p>일반적인 함수는 선언할때 마다 내부의 변수가 초기화되지만, 클로저(내부) 함수는 선언했을 때의 렉시컬 환경을 기억하고 있다.
+따라서 외부 함수의 변수 count에 접근할 수 있고, 변수 count는 자신을 참조하는 함수가 소멸될 때가지 유지된다.
+<em>참고로 클로저는 외부 함수의 변수에 마지막으로 저장된 값만(!) 알 수 있다.</em></p>
+<p>count 변수는 <strong>외부에서 직접 접근할 수 없는 private 변수이므로 오류 발생을 피하고 프로그램의 안전성을 높인다.</strong></p>
+<p>반대로 생각하면 원래는 소멸됐어야 할(가비지 컬렉션) 변수가 메모리상에 남아있는 것이기 때문에 클로저의 오용이나 남발을 피해야 한다.</p>
+<h3 id="참고">참고</h3>
+<ul>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Closures"  target="_blank" >클로저 - JavaScript | MDN</a></li>
+<li><a href="https://poiemaweb.com/js-closure"  target="_blank" >Closure | PoiemaWeb</a></li>
+<li><a href="https://meetup.toast.com/posts/86"  target="_blank" >자바스크립트의 스코프와 클로저 : TOAST Meetup</a></li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>데이터와 (데이터를 처리하는) 함수의 묶음 (캡슐화＞정보은닉, 캡슐화≠정보은닉) <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>(캡슐화된) 데이터와 함수를 외부에 노출시키지 않고 내부에 숨김 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+    <div class="article-info">
+    
+    <div class="article-date">2021.02.16</div>
+    
+    <div class="article-taxonomies">
+        
+        
+        <ul class="article-tags">
+            
+            <li><a href="https://haneunbi.github.io/tags/javascript">#javascript</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/closure">#closure</a></li>
+            
+            <li><a href="https://haneunbi.github.io/tags/til">#TIL</a></li>
+            
+        </ul>
+        
+    </div>
+</div>
+    
+<footer>
+    <script src="https://utteranc.es/client.js"
+        repo="haneunbi/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script>
+</footer>
+
+</article>
+
+
+        </main>
+        <footer>
+            
+            <p>© B, 2021<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+
+</html>

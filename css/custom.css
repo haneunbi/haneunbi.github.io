@@ -10,14 +10,15 @@ a{color:#42b983;transition:color 0.3s}
 a:hover, a:focus, .article-info a:hover{color:#fcbc0e;border-bottom:1px solid}
 .container{width:90%;max-width:760px}
 header h1{font-size:18px}
-main h1{margin-top:2.4em;margin-bottom:1.2em}
-article header h1{margin-top:2em}
+main h1{margin-top:2.4rem;margin-bottom:1.2rem}
+article header h1{margin-top:2rem}
 footer{font-size:13px;text-align:right}
 .article-categories a{color:#333}
 .article-tags a{color:#1d60a3}
-.post .content h2{font-size:1.3em}
-.post .content h3{font-size:1.2em}
-.post .content h4{font-size:1.1em}
+
+.post .content h2{font-size:1.3rem}
+.post .content h3{font-size:1.2rem}
+.post .content h4{font-size:1.1rem}
 .post .content h1::before,
 .post .content h2::before,
 .post .content h3::before,
@@ -30,9 +31,14 @@ footer{font-size:13px;text-align:right}
 .post .content h4::before{color:#999}
 .post .content h5::before,
 .post .content h6::before{color:#bbb}
-.post .content table{font-size:0.85em}
+.post .content em{font-size:0.9rem}
+.post .content table{font-size:0.85rem}
+.post .content .footnotes{margin-bottom:3.6rem;font-size:0.85rem}
+.post .content .footnotes hr{margin:3.6rem 0 2.4rem}
+.post .content .footnotes p{margin:0.5rem 0}
+
 .post-short-list .article-info{margin-top:2px}
-.post .article-info{margin-top:2.4em}
+.post .article-info{margin-top:2.4rem}
 .txt_red{color:#ef5350}
 .txt_green{color:#42b983}
 .txt_blue{color:#2d80f3}

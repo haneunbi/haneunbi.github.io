@@ -6,10 +6,150 @@
     <description>B.log (javascript)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-KR</language>
-    <lastBuildDate>Tue, 16 Jun 2020 20:25:10 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 16 Feb 2021 19:57:01 +0900</lastBuildDate>
     
     <atom:link href="https://haneunbi.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[JavaScript] 클로저(Closure)란 무엇인가?</title>
+      <link>https://haneunbi.github.io/2021/02/16/2021-02-16-closure/</link>
+      <pubDate>Tue, 16 Feb 2021 19:57:01 +0900</pubDate>
+      
+      <guid>https://haneunbi.github.io/2021/02/16/2021-02-16-closure/</guid>
+      <description>&lt;p&gt;지금까지 클로저의 개념에 대해 몇번을 봤는지 모르겠다.&lt;br&gt;
+그때마다 정확히 이해했다기 보다는 대충 감만 잡는 느낌이었는데 오늘은 기필코 이해해 보려 한다!&lt;/p&gt;
+&lt;h2 id=&#34;클로저closure의-정의&#34;&gt;클로저(Closure)의 정의&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;클로저는 함수와 함수가 선언된 렉시컬 환경(Lexical environment)의 조합이다. &lt;em&gt;- MDN&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;당최 무슨 말인가.. 😑&lt;/p&gt;
+&lt;p&gt;Closure의 사전적 정의는 &lt;strong&gt;폐쇄&lt;/strong&gt;다.&lt;br&gt;
+클로저를 찾아 보면 렉시컬 환경(Lexical environment), 렉시컬 스코프(Lexical scope)란 말이 자주 등장하는데
+클로저를 이해하기 전에 먼저 렉시컬 스코프에 대해 살펴보자.&lt;/p&gt;
+&lt;h3 id=&#34;렉시컬-스코프lexical-scope&#34;&gt;렉시컬 스코프(Lexical scope)&lt;/h3&gt;
+&lt;p&gt;전역 스코프(Global scope)와 지역 스코프(Local scope)는 알겠는데,
+렉시컬 스코프(Lexical scope)란 무엇이더냐..&lt;/p&gt;
+&lt;p&gt;우리가 변수나 함수를 &lt;strong&gt;어디에 선언&lt;/strong&gt;하는 지에 따라 전역 스코프와 지역 스코프가 결정되는데,
+이렇게 구성된 스코프를 &lt;strong&gt;렉시컬 스코프&lt;/strong&gt;라고 한다. &lt;em&gt;= 정적 스코프(Static scope)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;함수를 선언할 때 함수 내부의 변수는 &lt;strong&gt;자기 스코프로부터 가장 가까운 상위 변수를 계속 참조&lt;/strong&gt;하게 된다.&lt;br&gt;
+아래 예제를 보자.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;foo&lt;/span&gt;() {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;;
+  &lt;span style=&#34;color:#a6e22e&#34;&gt;bar&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// foo 함수 내부에서 bar 함수 호출
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;bar&lt;/span&gt;() {
+  &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;);
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;foo&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// 5 (10 아님)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;bar&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// 5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ foo 함수 내부에서 bar 함수를 호출했지만 bar 함수가 &lt;strong&gt;선언&lt;/strong&gt;된 &lt;strong&gt;전역&lt;/strong&gt;에서 변수(x)를 찾아 출력한다.&lt;br&gt;
+즉, 렉시컬 스코프는 함수를 어디서 호출하는지가 아니라 &lt;strong&gt;어디에 선언&lt;/strong&gt;하였는지에 따라 결정된다.&lt;/p&gt;
+&lt;p&gt;이렇듯 렉시컬 스코프는 특별한 개념이 아니라 우리가 당연하다 생각하며 개발한 것이다.&lt;br&gt;
+그럼 다시 클로저로 돌아와 아래 예제를 살펴보자.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;outer&lt;/span&gt;() {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;;
+    
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;inner&lt;/span&gt;() {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// 자신의 스코프 내 x가 없기 때문에 상위 스코프에서 x를 찾아 출력한다.
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    };
+
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;inner&lt;/span&gt;();
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;outer&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// 10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ inner 함수는 &lt;strong&gt;outer 함수 안에서 선언되고 호출&lt;/strong&gt;된다.&lt;/p&gt;
+&lt;p&gt;간단한 위의 예제를 아래처럼 바꿔보자.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;outer&lt;/span&gt;() {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;;
+    
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;inner&lt;/span&gt;() {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;);
+    };
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;inner&lt;/span&gt;;
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;outer&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// ƒ inner() { console.log(x); }
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;closure&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;outer&lt;/span&gt;();
+&lt;span style=&#34;color:#a6e22e&#34;&gt;closure&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// 10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ closure 함수가 참조하고 있는 outer 함수를 호출해보면 &lt;strong&gt;inner 함수 자체를 반환&lt;/strong&gt;하는 것을 볼 수 있다.&lt;br&gt;
+&lt;em&gt;(이것만 보면 outer 함수의 지역 변수인 x=10은 쓸모가 없어 보인다.)&lt;/em&gt;
+그럼 전역 스코프에서 호출된 closure 함수는 전역 변수의 x를 찾아 5를 출력할 것 같은데, 지역 변수인 10을 출력한다(?!)&lt;/p&gt;
+&lt;p&gt;부모 함수에서 내부 함수를 외부로 리턴하면, 부모 함수 밖에서도 내부 함수를 호출하는 것이 가능하다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;즉, 클로저란 함수 내부에 &lt;strong&gt;선언&lt;/strong&gt;된 함수가 &lt;strong&gt;호출&lt;/strong&gt;될 때 외부 변수에 접근하기 위한 객체이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;그래서-클로저는-어디에-쓰일까&#34;&gt;그래서 클로저는 어디에 쓰일까?&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;클로저를 사용하면 객체지향 프로그래밍의 &lt;strong&gt;캡슐화&lt;/strong&gt;&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;와 &lt;strong&gt;정보 은닉&lt;/strong&gt;&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;같은 이점을 얻을 수 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;이 말도 나에겐 너무나 추상적인 말이다..&lt;br&gt;
+사실 이 클로저의 활용 부분이 명확하지 않아 지금까지 클로저를 제대로 이해하지 못했다.&lt;/p&gt;
+&lt;h3 id=&#34;전역-변수를-피하자&#34;&gt;전역 변수를 피하자!&lt;/h3&gt;
+&lt;p&gt;초보 개발자도 전역 변수의 사용을 자제하라는 말은 많이 들어봤을 것이다.&lt;/p&gt;
+&lt;p&gt;변하지 않고 항상 같은 값을 가지는 상수(const)는 괜찮지만 비-상수(non-const)는 전역 변수를 피해야 한다.
+전역 변수는 언제 어디서 누구나 접근할 수 있고 값이 변경될 위험이 있기 때문이다.&lt;/p&gt;
+&lt;p&gt;여기서 클로저를 사용하면 된다. (=정보 은닉)&lt;/p&gt;
+&lt;h4 id=&#34;지역-변수를-사용한-카운터-x&#34;&gt;지역 변수를 사용한 카운터 (X)&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;counter&lt;/span&gt;() {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;count&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;( &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;count&lt;/span&gt; );
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;counter&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// 실행 시마다 count 변수가 초기화되어 언제나 1이 출력된다.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;전역-변수를-사용한-카운터-&#34;&gt;전역 변수를 사용한 카운터 (△)&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;count&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;counter&lt;/span&gt;() {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;( &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;count&lt;/span&gt; );
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;counter&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// 실행 시마다 1씩 증가한다. 전역 변수의 오염 위험
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;클로저를-사용한-카운터-o&#34;&gt;클로저를 사용한 카운터 (O)&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;counter&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;count&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() { &lt;span style=&#34;color:#75715e&#34;&gt;// 클로저 함수
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;( &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;count&lt;/span&gt; );
+    }
+})();
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;counter&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// count 변수의 오염 걱정없이 1씩 증가한다.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 클로저를 이용하면 지역 변수인 count가 0으로 초기화되지 않고 유지됨을 볼 수 있다.&lt;/p&gt;
+&lt;p&gt;일반적인 함수는 선언할때 마다 내부의 변수가 초기화되지만, 클로저(내부) 함수는 선언했을 때의 렉시컬 환경을 기억하고 있다.
+따라서 외부 함수의 변수 count에 접근할 수 있고, 변수 count는 자신을 참조하는 함수가 소멸될 때가지 유지된다.
+&lt;em&gt;참고로 클로저는 외부 함수의 변수에 마지막으로 저장된 값만(!) 알 수 있다.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;count 변수는 &lt;strong&gt;외부에서 직접 접근할 수 없는 private 변수이므로 오류 발생을 피하고 프로그램의 안전성을 높인다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;반대로 생각하면 원래는 소멸됐어야 할(가비지 컬렉션) 변수가 메모리상에 남아있는 것이기 때문에 클로저의 오용이나 남발을 피해야 한다.&lt;/p&gt;
+&lt;h3 id=&#34;참고&#34;&gt;참고&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Closures&#34;  target=&#34;_blank&#34; &gt;클로저 - JavaScript | MDN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://poiemaweb.com/js-closure&#34;  target=&#34;_blank&#34; &gt;Closure | PoiemaWeb&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://meetup.toast.com/posts/86&#34;  target=&#34;_blank&#34; &gt;자바스크립트의 스코프와 클로저 : TOAST Meetup&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;데이터와 (데이터를 처리하는) 함수의 묶음 (캡슐화＞정보은닉, 캡슐화≠정보은닉) &lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;(캡슐화된) 데이터와 함수를 외부에 노출시키지 않고 내부에 숨김 &lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
+</description>
+    </item>
     
     <item>
       <title>[JavaScript] Vanilla JS</title>
