@@ -17,7 +17,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://haneunbi.github.io/2020/06/16/vanilla-js/" />
 <meta property="article:published_time" content="2020-06-16T20:25:10+09:00" />
-<meta property="article:modified_time" content="2020-09-22T16:34:40+09:00" />
+<meta property="article:modified_time" content="2021-02-17T11:12:50+09:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[JavaScript] Vanilla JS"/>
@@ -31,10 +31,10 @@
 <link rel="apple-touch-icon" href="https://haneunbi.github.io/favicon.png">
 
 <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
-<script src="https://haneunbi.github.io/js/custom.js?rnd=1613477954"></script>
+<script src="https://haneunbi.github.io/js/custom.js?rnd=1626912105"></script>
 
-<link rel="stylesheet" href="https://haneunbi.github.io/css/style.css?rnd=1613477954">
-<link rel="stylesheet" href="https://haneunbi.github.io/css/custom.css?rnd=1613477954">
+<link rel="stylesheet" href="https://haneunbi.github.io/css/style.css?rnd=1626912105">
+<link rel="stylesheet" href="https://haneunbi.github.io/css/custom.css?rnd=1626912105">
 
 
     
@@ -82,10 +82,10 @@
 </span><span style="color:#75715e"></span>
 document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;test&#39;</span>); <span style="color:#75715e">// JavaScript
 </span></code></pre></div><p>내가 jQuery를 사용한 이유는 1차원적으로 CSS 스타일의 선택자 때문이었다.
-id고 class고 tag name을 가리지 않는 만능 선택자 $()를 두고 길기만 한 document.getElementById를 쓰고 싶지 않았다.
-물론 $를 한번 호출할 때마다 성능 저하를 깨닫고부터는 아래와 같이 가능한 변수에 담아두고 쓰거나 최적의 선택자를 쓰도록 노력했다.</p>
+id고 class고 tag name을 가리지 않는 만능 선택자 $()를 두고 길기만 한 document.getElementById를 쓰고 싶지 않았다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">window.<span style="color:#a6e22e">jQuery</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">jQuery</span>;
 </code></pre></div><p>▲ jQuery에서 $란? jQuery 그 자체! jQuery() = $()</p>
+<p>물론 $를 한번 호출할 때마다 성능 저하를 깨닫고부터는 아래와 같이 가능한 변수에 담아두고 쓰거나 최적의 선택자를 쓰도록 노력했다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$this</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">this</span>);
 
 <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">$this</span>.<span style="color:#a6e22e">hasClass</span>(<span style="color:#e6db74">&#39;open&#39;</span>)){
@@ -108,19 +108,28 @@ id고 class고 tag name을 가리지 않는 만능 선택자 $()를 두고 길�
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// 실행 코드
 </span><span style="color:#75715e"></span>});
 </code></pre></div><p>▲ 외부 리소스(css, js, images, iframe 등)와 상관없이 DOM이 로드된 직후 실행<br>
+중복 선언해도 순서대로 모두 실행된다.<br>
 JavaScript의 .addEventListener()는 IE9 이상에서만 작동하는 점을 유의하자.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// jQuery
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">load</span>(<span style="color:#66d9ef">function</span>(){
-    <span style="color:#75715e">// 실행 코드
+    <span style="color:#75715e">// 중복 선언해도 순서대로 실행은 됨 (하지만 1개만!)
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 실행 코드
 </span><span style="color:#75715e"></span>});
 
 <span style="color:#75715e">// JavaScript
 </span><span style="color:#75715e"></span>window.<span style="color:#a6e22e">onload</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
-    <span style="color:#75715e">// 실행 코드
+    <span style="color:#75715e">// 중복 선언 시 마지막 한 개의 함수만 실행
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 실행 코드
 </span><span style="color:#75715e"></span>};
 </code></pre></div><p>▲ 화면의 모든 콘텐츠(css, script, images, iframe 등)가 구성된 이후 실행</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- HTML --&gt;</span>
+&lt;<span style="color:#f92672">body</span> <span style="color:#a6e22e">onload</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;foo();&#34;</span>&gt;
+</code></pre></div><p>▲ window.onload와 동일하므로 중복 선언 시 한 개만 실행된다.<br>
+<em>(중복 시 body에 선언한 onload가 실행된다고 하는데, 내 경우엔 window.onload가 실행돼서 확인이 필요해 보인다.)</em></p>
 <blockquote>
-<p>document.ready() &gt; window.load() &gt; body onload 순서로 실행된다.</p>
+<p><strong>$(document).ready()</strong> → <em>리소스 로드</em><br>
+→ <strong>window.onload</strong> <em>(=body onload)</em> → <strong>$(window).load()</strong> <em>순서로 실행된다.</em></p>
+<p><em>▲ window.onload와 $(window).load()를 중복 선언하는 이는 없겠지만 굳이 해보면 위와 같다.</em></p>
 </blockquote>
 <h2 id="dom-선택자selector">DOM 선택자(Selector)</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// jQuery
@@ -131,8 +140,8 @@ JavaScript의 .addEventListener()는 IE9 이상에서만 작동하는 점을 유
 </span><span style="color:#75715e"></span>
 <span style="color:#75715e">// JavaScript
 </span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;id&#39;</span>); <span style="color:#75715e">// IE5.5+
-</span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">getElementsByClassName</span>(<span style="color:#e6db74">&#39;class&#39;</span>); <span style="color:#75715e">// IE9+
 </span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">getElementsByTagName</span>(<span style="color:#e6db74">&#39;div&#39;</span>); <span style="color:#75715e">// IE5.5+
+</span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">getElementsByClassName</span>(<span style="color:#e6db74">&#39;class&#39;</span>); <span style="color:#75715e">// IE9+
 </span><span style="color:#75715e"></span>
 document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#id&#39;</span>); <span style="color:#75715e">// IE8+
 </span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.class&#39;</span>); <span style="color:#75715e">// IE8+ (첫 번째 element의 Node)
@@ -141,7 +150,7 @@ document.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:
 </span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:#e6db74">&#39;.class1, .class2&#39;</span>); <span style="color:#75715e">// 다중 선택자
 </span></code></pre></div><p>▲ 자바스크립트의 .querySelector()가 나오면서 선택자가 편해졌다.
 하지만 <strong>jQuery는 jQuery 객체를 반환</strong>하고, <strong>JavaScript는 Native JavaScript 객체를 반환</strong>하기 때문에
-jQuery처럼 이벤트를 걸면 동작하지 않는 경우가 있다. <em>(이 부분은 차후 포스팅!)</em></p>
+단순히 jQuery처럼 이벤트를 걸면 동작하지 않는 경우가 있다. <em>(이 부분은 차후 포스팅!)</em></p>
 <blockquote>
 <p>.getElementById()가 .querySelector()보다 빠르다.</p>
 </blockquote>
@@ -208,12 +217,7 @@ class가 하나만 지정된 상태라면 <strong>.className</strong> 사용 가
 <li><a href="https://developer.mozilla.org/ko/docs/Web/API/Document/getElementsByClassName"  target="_blank" >Document.getElementsByClassName() | MDN</a></li>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/API/Document/querySelector"  target="_blank" >Document.querySelector() | MDN</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll"  target="_blank" >Document.querySelectorAll() | MDN</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList"  target="_blank" >Element.classList | MDN</a>
-<pre><code>1. Does not have support for classList on SVG or MathML elements.
-2. Does not support the second parameter for the toggle method
-3. Does not support multiple parameters for the add() &amp; remove() methods
-4. Does not support assign to classList or the replace() method
-</code></pre></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList"  target="_blank" >Element.classList | MDN</a></li>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/API/Element/className"  target="_blank" >Element.className | MDN</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/Events"  target="_blank" >Event reference | MDN</a></li>
 </ul>
@@ -269,6 +273,15 @@ Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a targe
             
         </footer>
     </div>
+
+    <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+    <script type="text/javascript">
+        if (!wcs_add) var wcs_add = {};
+        wcs_add["wa"] = "4b35b384926318";
+        if (window.wcs) {
+            wcs_do();
+        }
+    </script>
 </body>
 
 </html>

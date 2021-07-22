@@ -171,10 +171,10 @@
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
 document.&lt;span style=&#34;color:#a6e22e&#34;&gt;getElementById&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;test&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// JavaScript
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;내가 jQuery를 사용한 이유는 1차원적으로 CSS 스타일의 선택자 때문이었다.
-id고 class고 tag name을 가리지 않는 만능 선택자 $()를 두고 길기만 한 document.getElementById를 쓰고 싶지 않았다.
-물론 $를 한번 호출할 때마다 성능 저하를 깨닫고부터는 아래와 같이 가능한 변수에 담아두고 쓰거나 최적의 선택자를 쓰도록 노력했다.&lt;/p&gt;
+id고 class고 tag name을 가리지 않는 만능 선택자 $()를 두고 길기만 한 document.getElementById를 쓰고 싶지 않았다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;window.&lt;span style=&#34;color:#a6e22e&#34;&gt;jQuery&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; window.&lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;jQuery&lt;/span&gt;;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ jQuery에서 $란? jQuery 그 자체! jQuery() = $()&lt;/p&gt;
+&lt;p&gt;물론 $를 한번 호출할 때마다 성능 저하를 깨닫고부터는 아래와 같이 가능한 변수에 담아두고 쓰거나 최적의 선택자를 쓰도록 노력했다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;$this&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;);
 
 &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;$this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;hasClass&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;open&amp;#39;&lt;/span&gt;)){
@@ -197,19 +197,28 @@ id고 class고 tag name을 가리지 않는 만능 선택자 $()를 두고 길�
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// 실행 코드
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;});
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 외부 리소스(css, js, images, iframe 등)와 상관없이 DOM이 로드된 직후 실행&lt;br&gt;
+중복 선언해도 순서대로 모두 실행된다.&lt;br&gt;
 JavaScript의 .addEventListener()는 IE9 이상에서만 작동하는 점을 유의하자.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// jQuery
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(window).&lt;span style=&#34;color:#a6e22e&#34;&gt;load&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){
-    &lt;span style=&#34;color:#75715e&#34;&gt;// 실행 코드
+    &lt;span style=&#34;color:#75715e&#34;&gt;// 중복 선언해도 순서대로 실행은 됨 (하지만 1개만!)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// 실행 코드
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;});
 
 &lt;span style=&#34;color:#75715e&#34;&gt;// JavaScript
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;window.&lt;span style=&#34;color:#a6e22e&#34;&gt;onload&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){
-    &lt;span style=&#34;color:#75715e&#34;&gt;// 실행 코드
+    &lt;span style=&#34;color:#75715e&#34;&gt;// 중복 선언 시 마지막 한 개의 함수만 실행
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// 실행 코드
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;};
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 화면의 모든 콘텐츠(css, script, images, iframe 등)가 구성된 이후 실행&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- HTML --&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;onload&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;foo();&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ window.onload와 동일하므로 중복 선언 시 한 개만 실행된다.&lt;br&gt;
+&lt;em&gt;(중복 시 body에 선언한 onload가 실행된다고 하는데, 내 경우엔 window.onload가 실행돼서 확인이 필요해 보인다.)&lt;/em&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;document.ready() &amp;gt; window.load() &amp;gt; body onload 순서로 실행된다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;$(document).ready()&lt;/strong&gt; → &lt;em&gt;리소스 로드&lt;/em&gt;&lt;br&gt;
+→ &lt;strong&gt;window.onload&lt;/strong&gt; &lt;em&gt;(=body onload)&lt;/em&gt; → &lt;strong&gt;$(window).load()&lt;/strong&gt; &lt;em&gt;순서로 실행된다.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;▲ window.onload와 $(window).load()를 중복 선언하는 이는 없겠지만 굳이 해보면 위와 같다.&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;dom-선택자selector&#34;&gt;DOM 선택자(Selector)&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// jQuery
@@ -220,8 +229,8 @@ JavaScript의 .addEventListener()는 IE9 이상에서만 작동하는 점을 유
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
 &lt;span style=&#34;color:#75715e&#34;&gt;// JavaScript
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;document.&lt;span style=&#34;color:#a6e22e&#34;&gt;getElementById&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;id&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// IE5.5+
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;document.&lt;span style=&#34;color:#a6e22e&#34;&gt;getElementsByClassName&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;class&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// IE9+
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;document.&lt;span style=&#34;color:#a6e22e&#34;&gt;getElementsByTagName&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;div&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// IE5.5+
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;document.&lt;span style=&#34;color:#a6e22e&#34;&gt;getElementsByClassName&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;class&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// IE9+
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
 document.&lt;span style=&#34;color:#a6e22e&#34;&gt;querySelector&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#id&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// IE8+
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;document.&lt;span style=&#34;color:#a6e22e&#34;&gt;querySelector&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;.class&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// IE8+ (첫 번째 element의 Node)
@@ -230,7 +239,7 @@ document.&lt;span style=&#34;color:#a6e22e&#34;&gt;querySelectorAll&lt;/span&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;document.&lt;span style=&#34;color:#a6e22e&#34;&gt;querySelectorAll&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;.class1, .class2&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// 다중 선택자
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;▲ 자바스크립트의 .querySelector()가 나오면서 선택자가 편해졌다.
 하지만 &lt;strong&gt;jQuery는 jQuery 객체를 반환&lt;/strong&gt;하고, &lt;strong&gt;JavaScript는 Native JavaScript 객체를 반환&lt;/strong&gt;하기 때문에
-jQuery처럼 이벤트를 걸면 동작하지 않는 경우가 있다. &lt;em&gt;(이 부분은 차후 포스팅!)&lt;/em&gt;&lt;/p&gt;
+단순히 jQuery처럼 이벤트를 걸면 동작하지 않는 경우가 있다. &lt;em&gt;(이 부분은 차후 포스팅!)&lt;/em&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;.getElementById()가 .querySelector()보다 빠르다.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -297,12 +306,7 @@ class가 하나만 지정된 상태라면 &lt;strong&gt;.className&lt;/strong&gt
 &lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/ko/docs/Web/API/Document/getElementsByClassName&#34;  target=&#34;_blank&#34; &gt;Document.getElementsByClassName() | MDN&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/ko/docs/Web/API/Document/querySelector&#34;  target=&#34;_blank&#34; &gt;Document.querySelector() | MDN&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll&#34;  target=&#34;_blank&#34; &gt;Document.querySelectorAll() | MDN&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/Element/classList&#34;  target=&#34;_blank&#34; &gt;Element.classList | MDN&lt;/a&gt;
-&lt;pre&gt;&lt;code&gt;1. Does not have support for classList on SVG or MathML elements.
-2. Does not support the second parameter for the toggle method
-3. Does not support multiple parameters for the add() &amp;amp; remove() methods
-4. Does not support assign to classList or the replace() method
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/Element/classList&#34;  target=&#34;_blank&#34; &gt;Element.classList | MDN&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/ko/docs/Web/API/Element/className&#34;  target=&#34;_blank&#34; &gt;Element.className | MDN&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/Events&#34;  target=&#34;_blank&#34; &gt;Event reference | MDN&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
